@@ -5,14 +5,15 @@ import Header from "../../Blocks/Header/Header"
 import Footer from "../../Blocks/Footer/Footer";
 
 
-function Empty({ children, ...props }) {
+const Layout = () => {
     return (
         <>
-            <Header/>
-            <Outlet />
-            <Footer/>
+            <Header />
+            <div style={{ padding: "20px" }}>
+                <Outlet /> {/* Отображает текущую вложенную страницу */}
+            </div>
         </>
     );
-}
+};
 
-export default Empty;
+export default Layout;

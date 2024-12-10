@@ -1,21 +1,38 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
+import Layout from "./Components/Standart/Layout/Layout";
 import Main_Page from "./Components/Pages/Main_Page";
 import Non_Found_Page from "./Components/Pages/Non_Found_Page";
-import Layout from "./Components/Standart/Layout/Layout";
+
+// Импортируем компоненты для маршрутов
+import Schedule from "./Components/Pages/Schedule";
+import Students from "./Components/Pages/Students";
+import Teachers from "./Components/Pages/Teachers";
+import Groups from "./Components/Pages/Groups";
+import Rooms from "./Components/Pages/Rooms";
+import Conflicts from "./Components/Pages/Conflicts";
 
 function App() {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Main_Page />} />
-          <Route path="*" element={<Non_Found_Page />} />
-        </Route>
-      </Routes>
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        {/* Главная страница */}
+        <Route index element={<Schedule />} />
+
+        {/* Остальные маршруты */}
+        <Route path="/schedule" element={<Schedule />} />
+        <Route path="/students" element={<Students />} />
+        <Route path="/teachers" element={<Teachers />} />
+        <Route path="/groups" element={<Groups />} />
+        <Route path="/rooms" element={<Rooms />} />
+        <Route path="/conflicts" element={<Conflicts />} />
+
+        {/* Страница "не найдено" */}
+        <Route path="*" element={<Non_Found_Page />} />
+      </Route>
+    </Routes>
+  );
 }
 
-export default App
+export default App;
