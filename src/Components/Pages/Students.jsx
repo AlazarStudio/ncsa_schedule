@@ -156,17 +156,27 @@ const Students = () => {
     };
 
     const columns = [
-        { key: "fullName", label: "ФИО", sortable: true },
-        { key: "recordBookNumber", label: "Номер зачетки", sortable: true },
-        { key: "group", label: "Группа", sortable: true },
-        { key: "subgroup", label: "Подгруппа", sortable: true },
-        { key: "login", label: "Логин", sortable: true },
-        { key: "password", label: "Пароль", sortable: false },
+        { width: '45%', key: "fullName", label: "ФИО", type: "text" },
+        { width: '15%', key: "recordBookNumber", label: "Номер зачетки", type: "text" },
+        {
+            width: '10%', key: "group", label: "Группа", type: "select", options: [
+                { value: "ПМИ 161", label: "ПМИ 161" },
+                { value: "ПМИ 162", label: "ПМИ 162" },
+            ]
+        },
+        {
+            width: '10%', key: "subgroup", label: "Подгруппа", type: "select", options: [
+                { value: "1 подгруппа", label: "1 подгруппа" },
+                { value: "2 подгруппа", label: "2 подгруппа" },
+            ]
+        },
+        { width: '10%', key: "login", label: "Логин", type: "text" },
+        { width: '10%', key: "password", label: "Пароль", type: "password" },
     ];
 
     return (
         <>
-            <PageHeader onAdd={() => handleOpenModal()} />
+            <PageHeader onAdd={() => handleOpenModal()} title={'Студенты'} />
             <SearchBar onSearch={handleSearch} value={searchQuery} />
             <DataTable
                 data={paginatedData}
@@ -186,10 +196,11 @@ const Students = () => {
                 onDelete={handleOpenDeleteDialog}
             />
             <StudentModal
+                columns={columns}
                 open={modalOpen}
                 onClose={() => setModalOpen(false)}
                 onSave={handleSaveStudent}
-                student={editingStudent}
+                item={editingStudent}
             />
             <DeleteConfirmationDialog
                 open={deleteDialogOpen}

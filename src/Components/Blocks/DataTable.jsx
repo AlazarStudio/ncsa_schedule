@@ -38,7 +38,7 @@ const DataTable = ({
                         </TableCell>
                         {/* Динамические заголовки */}
                         {columns.map((column) => (
-                            <TableCell key={column.key} sx={{ padding: "25px 16px" }}>
+                            <TableCell key={column.key} sx={{ padding: "25px 16px", width: column.width, fontWeight: '600' }}>
                                 {column.sortable ? (
                                     <TableSortLabel
                                         active={sortConfig.key === column.key}

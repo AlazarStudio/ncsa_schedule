@@ -20,103 +20,70 @@ const modalStyle = {
     borderRadius: 2,
 };
 
-const StudentModal = ({ open, onClose, onSave, student }) => {
-    const [formData, setFormData] = useState({
-        fullName: "",
-        recordBookNumber: "",
-        group: "",
-        subgroup: "",
-        login: "",
-        password: "",
-    });
+const StudentModal = ({ open, onClose, onSave, item, columns }) => {
+    const [formData, setFormData] = useState({});
 
+    // Инициализация формы
     useEffect(() => {
-        if (student) {
-            setFormData(student);
+        if (item) {
+            setFormData(item); // Если редактируем, подгружаем данные
         } else {
-            setFormData({
-                fullName: "",
-                recordBookNumber: "",
-                group: "",
-                subgroup: "",
-                login: "",
-                password: "",
-            });
+            // Если создаём новый элемент, заполняем пустые значения
+            const emptyForm = columns.reduce((acc, column) => {
+                acc[column.key] = "";
+                return acc;
+            }, {});
+            setFormData(emptyForm);
         }
-    }, [student]);
+    }, [item, columns]);
 
+    // Обработка изменений в полях формы
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
+    // Сохранение формы
     const handleSave = () => {
         onSave(formData);
         onClose();
     };
 
     return (
-        <Modal open={open} onClose={onClose}>
+        <Modal open={open} onClose={onClose} disableScrollLock={true}>
             <Box sx={modalStyle}>
                 <Typography variant="h6" component="h2" mb={2}>
-                    {student ? "Изменить студента" : "Добавить студента"}
+                    {item ? "Редактировать запись" : "Добавить запись"}
                 </Typography>
-                <TextField
-                    fullWidth
-                    label="ФИО"
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleChange}
-                    margin="normal"
-                />
-                <TextField
-                    fullWidth
-                    label="Номер зачетки"
-                    name="recordBookNumber"
-                    value={formData.recordBookNumber}
-                    onChange={handleChange}
-                    margin="normal"
-                />
-                <TextField
-                    fullWidth
-                    label="Группа"
-                    name="group"
-                    value={formData.group}
-                    onChange={handleChange}
-                    margin="normal"
-                    select
-                >
-                    <MenuItem value="ПМИ 161">ПМИ 161</MenuItem>
-                    <MenuItem value="ПМИ 162">ПМИ 162</MenuItem>
-                </TextField>
-                <TextField
-                    fullWidth
-                    label="Подгруппа"
-                    name="subgroup"
-                    value={formData.subgroup}
-                    onChange={handleChange}
-                    margin="normal"
-                    select
-                >
-                    <MenuItem value="1 подгруппа">1 подгруппа</MenuItem>
-                    <MenuItem value="2 подгруппа">2 подгруппа</MenuItem>
-                </TextField>
-                <TextField
-                    fullWidth
-                    label="Логин"
-                    name="login"
-                    value={formData.login}
-                    onChange={handleChange}
-                    margin="normal"
-                />
-                <TextField
-                    fullWidth
-                    label="Пароль"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    margin="normal"
-                />
+                {columns.map((column) => (
+                    <Box key={column.key} mb={2}>
+                        {column.type === "select" ? (
+                            <TextField
+                                fullWidth
+                                select
+                                label={column.label}
+                                name={column.key}
+                                value={formData[column.key] || ""}
+                                onChange={handleChange}
+                            >
+                                {column.options.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
+                        ) : (
+                            <TextField
+                                fullWidth
+                                label={column.label}
+                                name={column.key}
+                                value={formData[column.key] || ""}
+                                onChange={handleChange}
+                                type={column.type || "text"}
+                            />
+                        )}
+                    </Box>
+                ))}
                 <Box mt={2} display="flex" justifyContent="space-between">
                     <Button variant="outlined" onClick={onClose}>
                         Закрыть

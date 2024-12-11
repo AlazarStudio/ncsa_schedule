@@ -3,7 +3,7 @@ import { Box, Typography, Button } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import PrintIcon from "@mui/icons-material/Print";
 
-const PageHeader = ({ onAdd }) => {
+const PageHeader = ({ onAdd, title }) => {
     return (
         <Box
             sx={{
@@ -13,7 +13,7 @@ const PageHeader = ({ onAdd }) => {
                 marginBottom: 2,
             }}
         >
-            <Typography variant="h5">Студенты</Typography>
+            <Typography variant="h5">{title}</Typography>
             <Box>
                 <Button
                     variant="contained"
