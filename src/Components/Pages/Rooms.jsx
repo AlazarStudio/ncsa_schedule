@@ -5,17 +5,9 @@ import DataTable from "../Blocks/DataTable";
 import ActionPanel from "../Blocks/ActionPanel";
 import StudentModal from "../Blocks/StudentModal";
 import DeleteConfirmationDialog from "../Blocks/DeleteConfirmationDialog";
+import { rooms } from "../../data";
 
-const dummyData = [
-    { id: 1, fullName: "211", floor: "1" },
-    { id: 2, fullName: "222", floor: "2" },
-    { id: 3, fullName: "233", floor: "3" },
-    { id: 4, fullName: "214", floor: "1" },
-    { id: 5, fullName: "225", floor: "2" },
-    { id: 6, fullName: "216", floor: "1" },
-    { id: 7, fullName: "247", floor: "4" },
-    { id: 8, fullName: "218", floor: "1" },
-];
+const dummyData = rooms;
 
 const Rooms = () => {
     const [data, setData] = useState([...dummyData]);

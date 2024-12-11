@@ -5,39 +5,9 @@ import DataTable from "../Blocks/DataTable";
 import ActionPanel from "../Blocks/ActionPanel";
 import StudentModal from "../Blocks/StudentModal";
 import DeleteConfirmationDialog from "../Blocks/DeleteConfirmationDialog";
+import { teachers } from "../../data";
 
-const dummyData = [
-    { id: 1, fullName: "Джатдоев Алим Сеит-Алиевич", position: "Преподаватель", login: "Djatdoev", password: "00001111" },
-    { id: 2, fullName: "Иванов Иван Иванович", position: "Преподаватель", login: "Ivanov", password: "12345678" },
-    { id: 3, fullName: "Петров Петр Петрович", position: "Преподаватель", login: "Petrov", password: "abcdef12" },
-    { id: 4, fullName: "Сидоров Сидор Сидорович", position: "Преподаватель", login: "Sidorov", password: "00002222" },
-    { id: 5, fullName: "Кузнецов Алексей Андреевич", position: "Преподаватель", login: "Kuznetsov", password: "qwerty34" },
-    { id: 6, fullName: "Смирнов Андрей Викторович", position: "Преподаватель", login: "Smirnov", password: "pass1234" },
-    { id: 7, fullName: "Васильев Дмитрий Сергеевич", position: "Преподаватель", login: "Vasiliev", password: "abcd1234" },
-    { id: 8, fullName: "Алексеев Александр Александрович", position: "Преподаватель", login: "Alexeev", password: "4321abcd" },
-    { id: 9, fullName: "Морозов Владимир Петрович", position: "Преподаватель", login: "Morozov", password: "zxcvbnm" },
-    { id: 10, fullName: "Николаев Никита Игоревич", position: "Преподаватель", login: "Nikolaev", password: "asdfgh12" },
-    { id: 11, fullName: "Кравцов Константин Валерьевич", position: "Преподаватель", login: "Kravtsov", password: "09876543" },
-    { id: 12, fullName: "Михайлов Михаил Сергеевич", position: "Преподаватель", login: "Mikhailov", password: "11223344" },
-    { id: 13, fullName: "Григорьев Григорий Павлович", position: "Преподаватель", login: "Grigoryev", password: "55667788" },
-    { id: 14, fullName: "Андреев Андрей Аркадьевич", position: "Преподаватель", login: "Andreev", password: "22334455" },
-    { id: 15, fullName: "Максимов Максим Олегович", position: "Преподаватель", login: "Maximov", password: "33445566" },
-    { id: 16, fullName: "Федоров Федор Иванович", position: "Преподаватель", login: "Fedorov", password: "44556677" },
-    { id: 17, fullName: "Тихонов Тимофей Алексеевич", position: "Преподаватель", login: "Tikhonov", password: "66778899" },
-    { id: 18, fullName: "Киселев Кирилл Олегович", position: "Преподаватель", login: "Kiselev", password: "99887766" },
-    { id: 19, fullName: "Ильин Илья Викторович", position: "Преподаватель", login: "Ilin", password: "88997766" },
-    { id: 20, fullName: "Герасимов Герман Валерьевич", position: "Преподаватель", login: "Gerasimov", password: "77665544" },
-    { id: 21, fullName: "Артемов Артем Николаевич", position: "Преподаватель", login: "Artemov", password: "66778844" },
-    { id: 22, fullName: "Волков Виталий Степанович", position: "Преподаватель", login: "Volkov", password: "55555555" },
-    { id: 23, fullName: "Зайцев Захар Олегович", position: "Преподаватель", login: "Zaytsev", password: "44444444" },
-    { id: 24, fullName: "Соловьев Семен Сергеевич", position: "Преподаватель", login: "Solovyev", password: "33333333" },
-    { id: 25, fullName: "Павлов Павел Михайлович", position: "Преподаватель", login: "Pavlov", password: "22222222" },
-    { id: 26, fullName: "Семенов Сергей Артемович", position: "Преподаватель", login: "Semenov", password: "11111111" },
-    { id: 27, fullName: "Егоров Егор Ефимович", position: "Преподаватель", login: "Egorov", password: "01010101" },
-    { id: 28, fullName: "Романов Роман Тимурович", position: "Преподаватель", login: "Romanov", password: "02020202" },
-    { id: 29, fullName: "Дмитриев Дмитрий Константинович", position: "Преподаватель", login: "Dmitriev", password: "03030303" },
-    { id: 30, fullName: "Королев Константин Анатольевич", position: "Преподаватель", login: "Korolev", password: "04040404" },
-];
+const dummyData = teachers;
 
 const Teachers = () => {
     const [data, setData] = useState([...dummyData]);

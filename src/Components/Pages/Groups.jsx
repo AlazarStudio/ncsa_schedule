@@ -5,17 +5,9 @@ import DataTable from "../Blocks/DataTable";
 import ActionPanel from "../Blocks/ActionPanel";
 import StudentModal from "../Blocks/StudentModal";
 import DeleteConfirmationDialog from "../Blocks/DeleteConfirmationDialog";
+import { groups } from "../../data";
 
-const dummyData = [
-    { id: 1, fullName: "ПМ-131", course: "1" },
-    { id: 2, fullName: "ПМ-132", course: "2" },
-    { id: 3, fullName: "ПМ-133", course: "3" },
-    { id: 4, fullName: "ПМ-134", course: "1" },
-    { id: 5, fullName: "ПМ-135", course: "2" },
-    { id: 6, fullName: "ПМ-136", course: "1" },
-    { id: 7, fullName: "ПМ-137", course: "4" },
-    { id: 8, fullName: "ПМ-138", course: "1" },
-];
+const dummyData = groups;
 
 const Groups = () => {
     const [data, setData] = useState([...dummyData]);
