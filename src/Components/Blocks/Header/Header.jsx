@@ -1,50 +1,24 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Button, IconButton, InputBase } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, InputBase } from '@mui/material';
 import { Search as SearchIcon } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const StyledLink = styled(Link)(({ theme }) => ({
     textDecoration: 'none',
     color: 'inherit',
 }));
 
+const ActiveButton = styled(Button)(({ theme }) => ({
+    borderBottom: `2px solid #FFFFFF`, // Линия для выделения активной страницы
+    borderRadius: 0,
+}));
+
 const Header = () => {
-    // Стилизация для поиска и кнопок
-    const Search = styled('div')(({ theme }) => ({
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: '#f5f5f5',
-        marginLeft: 0,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            width: 'auto',
-        },
-    }));
+    const location = useLocation(); // Получаем текущий URL
 
-    const SearchIconWrapper = styled('div')(({ theme }) => ({
-        padding: theme.spacing(0, 2),
-        height: '100%',
-        position: 'absolute',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: '#81212D',
-    }));
-
-    const StyledInputBase = styled(InputBase)(({ theme }) => ({
-        color: 'inherit',
-        '& .MuiInputBase-input': {
-            padding: theme.spacing(1, 1, 1, 0),
-            paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-            transition: theme.transitions.create('width'),
-            width: '100%',
-            [theme.breakpoints.up('md')]: {
-                width: '20ch',
-            },
-            color: '#000000',
-        },
-    }));
+    // Определяем, является ли кнопка активной
+    const isActive = (path) => location.pathname === path;
 
     return (
         <AppBar position="static" style={{ backgroundColor: '#81212D' }}>
@@ -59,35 +33,49 @@ const Header = () => {
                     </StyledLink>
                 </Typography>
 
+                {/* Кнопки навигации */}
                 <StyledLink to="/schedule">
-                    <Button color="inherit">Расписание</Button>
+                    {isActive('/schedule') ? (
+                        <ActiveButton color="inherit">Расписание</ActiveButton>
+                    ) : (
+                        <Button color="inherit">Расписание</Button>
+                    )}
                 </StyledLink>
                 <StyledLink to="/students">
-                    <Button color="inherit">Студенты</Button>
+                    {isActive('/students') ? (
+                        <ActiveButton color="inherit">Студенты</ActiveButton>
+                    ) : (
+                        <Button color="inherit">Студенты</Button>
+                    )}
                 </StyledLink>
                 <StyledLink to="/teachers">
-                    <Button color="inherit">Преподаватели</Button>
+                    {isActive('/teachers') ? (
+                        <ActiveButton color="inherit">Преподаватели</ActiveButton>
+                    ) : (
+                        <Button color="inherit">Преподаватели</Button>
+                    )}
                 </StyledLink>
                 <StyledLink to="/groups">
-                    <Button color="inherit">Группы</Button>
+                    {isActive('/groups') ? (
+                        <ActiveButton color="inherit">Группы</ActiveButton>
+                    ) : (
+                        <Button color="inherit">Группы</Button>
+                    )}
                 </StyledLink>
                 <StyledLink to="/rooms">
-                    <Button color="inherit">Аудитории</Button>
+                    {isActive('/rooms') ? (
+                        <ActiveButton color="inherit">Аудитории</ActiveButton>
+                    ) : (
+                        <Button color="inherit">Аудитории</Button>
+                    )}
                 </StyledLink>
                 <StyledLink to="/conflicts">
-                    <Button color="inherit">Найти совпадения</Button>
+                    {isActive('/conflicts') ? (
+                        <ActiveButton color="inherit">Найти совпадения</ActiveButton>
+                    ) : (
+                        <Button color="inherit">Найти совпадения</Button>
+                    )}
                 </StyledLink>
-
-                {/* Поиск */}
-                <Search sx={{ marginLeft: '30px' }}>
-                    <SearchIconWrapper>
-                        <SearchIcon />
-                    </SearchIconWrapper>
-                    <StyledInputBase
-                        placeholder="Поиск…"
-                        inputProps={{ 'aria-label': 'search' }}
-                    />
-                </Search>
             </Toolbar>
         </AppBar>
     );
