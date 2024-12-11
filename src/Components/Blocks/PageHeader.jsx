@@ -22,7 +22,7 @@ const PageHeader = ({ onAdd, title }) => {
                     // sx={{ marginRight: 1 }}
                     onClick={onAdd} // Вызываем обработчик при клике
                 >
-                    Добавить студента
+                    Добавить
                 </Button>
                 {/* <Button
                     variant="outlined"

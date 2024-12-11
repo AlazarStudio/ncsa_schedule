@@ -156,22 +156,22 @@ const Students = () => {
     };
 
     const columns = [
-        { width: '45%', key: "fullName", label: "ФИО", type: "text" },
-        { width: '15%', key: "recordBookNumber", label: "Номер зачетки", type: "text" },
+        { sortable: true, width: '45%', key: "fullName", label: "ФИО", type: "text" },
+        { sortable: true, width: '15%', key: "recordBookNumber", label: "Номер зачетки", type: "text" },
         {
-            width: '10%', key: "group", label: "Группа", type: "select", options: [
+            sortable: true, width: '10%', key: "group", label: "Группа", type: "select", options: [
                 { value: "ПМИ 161", label: "ПМИ 161" },
                 { value: "ПМИ 162", label: "ПМИ 162" },
             ]
         },
         {
-            width: '10%', key: "subgroup", label: "Подгруппа", type: "select", options: [
+            sortable: true, width: '10%', key: "subgroup", label: "Подгруппа", type: "select", options: [
                 { value: "1 подгруппа", label: "1 подгруппа" },
                 { value: "2 подгруппа", label: "2 подгруппа" },
             ]
         },
-        { width: '10%', key: "login", label: "Логин", type: "text" },
-        { width: '10%', key: "password", label: "Пароль", type: "password" },
+        { sortable: true, width: '10%', key: "login", label: "Логин", type: "text" },
+        { sortable: true, width: '10%', key: "password", label: "Пароль", type: "password" },
     ];
 
     return (
