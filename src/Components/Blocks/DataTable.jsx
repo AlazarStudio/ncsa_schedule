@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Table,
     TableBody,
@@ -8,50 +8,96 @@ import {
     TableRow,
     Checkbox,
     Paper,
+    TableSortLabel,
 } from "@mui/material";
 
-const DataTable = ({ data, onSelectRow, selectedRows, onSelectAll }) => {
-    const isAllSelected = data.length > 0 && selectedRows.length === data.length; // Все строки выбраны
-    const isSomeSelected = selectedRows.length > 0 && selectedRows.length < data.length; // Частично выбраны
+const DataTable = ({ data, onSort, sortConfig, onSelectRow, selectedRows, onSelectAll }) => {
+    const isAllSelected = data.length > 0 && data.every((row) => selectedRows.includes(row.id));
+    const isSomeSelected = data.some((row) => selectedRows.includes(row.id)) && !isAllSelected;
 
     return (
-        <TableContainer component={Paper} sx={{ boxShadow: 'none', minHeight: '662px' }}>
+        <TableContainer component={Paper} sx={{ boxShadow: "none", height: "662px", minHeight: "662px", overflow: 'hidden' }}>
             <Table>
                 <TableHead>
                     <TableRow>
                         <TableCell padding="checkbox">
                             <Checkbox
-                                checked={isAllSelected} // Отмечен, если выбраны все строки
-                                indeterminate={isSomeSelected} // Отмечен частично
-                                onChange={(e) => onSelectAll(e.target.checked)} // Выбор всех строк
+                                checked={isAllSelected}
+                                indeterminate={isSomeSelected}
+                                onChange={(e) => onSelectAll(e.target.checked)}
                             />
                         </TableCell>
-                        <TableCell>ФИО</TableCell>
-                        <TableCell>Номер зачетки</TableCell>
-                        <TableCell>Группа</TableCell>
-                        <TableCell>Подгруппа</TableCell>
-                        <TableCell>Логин</TableCell>
-                        <TableCell>Пароль</TableCell>
+                        <TableCell>
+                            <TableSortLabel
+                                active={sortConfig.key === "fullName"}
+                                direction={sortConfig.key === "fullName" ? sortConfig.direction : "asc"}
+                                onClick={() => onSort("fullName")}
+                            >
+                                ФИО
+                            </TableSortLabel>
+                        </TableCell>
+                        <TableCell>
+                            <TableSortLabel
+                                active={sortConfig.key === "recordBookNumber"}
+                                direction={sortConfig.key === "recordBookNumber" ? sortConfig.direction : "asc"}
+                                onClick={() => onSort("recordBookNumber")}
+                            >
+                                Номер зачетки
+                            </TableSortLabel>
+                        </TableCell>
+                        <TableCell>
+                            <TableSortLabel
+                                active={sortConfig.key === "group"}
+                                direction={sortConfig.key === "group" ? sortConfig.direction : "asc"}
+                                onClick={() => onSort("group")}
+                            >
+                                Группа
+                            </TableSortLabel>
+                        </TableCell>
+                        <TableCell>
+                            <TableSortLabel
+                                active={sortConfig.key === "subgroup"}
+                                direction={sortConfig.key === "subgroup" ? sortConfig.direction : "asc"}
+                                onClick={() => onSort("subgroup")}
+                            >
+                                Подгруппа
+                            </TableSortLabel>
+                        </TableCell>
+                        <TableCell>
+                            <TableSortLabel
+                                active={sortConfig.key === "login"}
+                                direction={sortConfig.key === "login" ? sortConfig.direction : "asc"}
+                                onClick={() => onSort("login")}
+                            >
+                                Логин
+                            </TableSortLabel>
+                        </TableCell>
+                        <TableCell>
+                            <TableSortLabel
+                                active={sortConfig.key === "password"}
+                                direction={sortConfig.key === "password" ? sortConfig.direction : "asc"}
+                                onClick={() => onSort("password")}
+                            >
+                                Пароль
+                            </TableSortLabel>
+                        </TableCell>
                     </TableRow>
                 </TableHead>
-                <TableBody >
+                <TableBody>
                     {data.map((row) => (
-                        <TableRow
-                            key={row.id}
-                            selected={selectedRows.includes(row.id)}
-                        >
+                        <TableRow key={row.id} selected={selectedRows.includes(row.id)}>
                             <TableCell padding="checkbox">
                                 <Checkbox
                                     checked={selectedRows.includes(row.id)}
                                     onChange={() => onSelectRow(row.id)}
                                 />
                             </TableCell>
-                            <TableCell sx={{ padding: '17px 16px' }}>{row.fullName}</TableCell>
-                            <TableCell sx={{ padding: '17px 16px' }}>{row.recordBookNumber}</TableCell>
-                            <TableCell sx={{ padding: '17px 16px' }}>{row.group}</TableCell>
-                            <TableCell sx={{ padding: '17px 16px' }}>{row.subgroup}</TableCell>
-                            <TableCell sx={{ padding: '17px 16px' }}>{row.login}</TableCell>
-                            <TableCell sx={{ padding: '17px 16px' }}>{row.password}</TableCell>
+                            <TableCell sx={{ padding: "17px 16px" }}>{row.fullName}</TableCell>
+                            <TableCell sx={{ padding: "17px 16px" }}>{row.recordBookNumber}</TableCell>
+                            <TableCell sx={{ padding: "17px 16px" }}>{row.group}</TableCell>
+                            <TableCell sx={{ padding: "17px 16px" }}>{row.subgroup}</TableCell>
+                            <TableCell sx={{ padding: "17px 16px" }}>{row.login}</TableCell>
+                            <TableCell sx={{ padding: "17px 16px" }}>{row.password}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>
