@@ -15,7 +15,7 @@ const DataTable = ({ data, onSelectRow, selectedRows, onSelectAll }) => {
     const isSomeSelected = selectedRows.length > 0 && selectedRows.length < data.length; // Частично выбраны
 
     return (
-        <TableContainer component={Paper} sx={{ boxShadow: 'none' }}>
+        <TableContainer component={Paper} sx={{ boxShadow: 'none', minHeight: '662px' }}>
             <Table>
                 <TableHead>
                     <TableRow>
@@ -34,7 +34,7 @@ const DataTable = ({ data, onSelectRow, selectedRows, onSelectAll }) => {
                         <TableCell>Пароль</TableCell>
                     </TableRow>
                 </TableHead>
-                <TableBody>
+                <TableBody >
                     {data.map((row) => (
                         <TableRow
                             key={row.id}
@@ -46,12 +46,12 @@ const DataTable = ({ data, onSelectRow, selectedRows, onSelectAll }) => {
                                     onChange={() => onSelectRow(row.id)}
                                 />
                             </TableCell>
-                            <TableCell>{row.fullName}</TableCell>
-                            <TableCell>{row.recordBookNumber}</TableCell>
-                            <TableCell>{row.group}</TableCell>
-                            <TableCell>{row.subgroup}</TableCell>
-                            <TableCell>{row.login}</TableCell>
-                            <TableCell>{row.password}</TableCell>
+                            <TableCell sx={{ padding: '17px 16px' }}>{row.fullName}</TableCell>
+                            <TableCell sx={{ padding: '17px 16px' }}>{row.recordBookNumber}</TableCell>
+                            <TableCell sx={{ padding: '17px 16px' }}>{row.group}</TableCell>
+                            <TableCell sx={{ padding: '17px 16px' }}>{row.subgroup}</TableCell>
+                            <TableCell sx={{ padding: '17px 16px' }}>{row.login}</TableCell>
+                            <TableCell sx={{ padding: '17px 16px' }}>{row.password}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

@@ -24,7 +24,7 @@ const Header = () => {
         <AppBar position="static" style={{ backgroundColor: '#81212D' }}>
             <Toolbar>
                 <Typography variant="h6" style={{ flexGrow: 1 }}>
-                    <StyledLink to="/">
+                    <StyledLink to="/" sx={{ display: 'flex', alignItems: 'center' }}>
                         <img
                             src="/favicon-ncsa.png" // Замените на правильный путь к логотипу
                             alt="Logo"
@@ -35,7 +35,7 @@ const Header = () => {
 
                 {/* Кнопки навигации */}
                 <StyledLink to="/schedule">
-                    {isActive('/schedule') ? (
+                    {isActive('/schedule') || isActive('/') ? (
                         <ActiveButton color="inherit">Расписание</ActiveButton>
                     ) : (
                         <Button color="inherit">Расписание</Button>

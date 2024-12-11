@@ -19,18 +19,18 @@ const PageHeader = ({ onAdd }) => {
                     variant="contained"
                     color="primary"
                     startIcon={<AddIcon />}
-                    sx={{ marginRight: 1 }}
+                    // sx={{ marginRight: 1 }}
                     onClick={onAdd} // Вызываем обработчик при клике
                 >
                     Добавить студента
                 </Button>
-                <Button
+                {/* <Button
                     variant="outlined"
                     color="primary"
                     startIcon={<PrintIcon />}
                 >
                     Печать
-                </Button>
+                </Button> */}
             </Box>
         </Box>
     );
