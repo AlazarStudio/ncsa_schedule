@@ -16,7 +16,7 @@ const DataTable = ({ data, onSort, sortConfig, onSelectRow, selectedRows, onSele
     const isSomeSelected = data.some((row) => selectedRows.includes(row.id)) && !isAllSelected;
 
     return (
-        <TableContainer component={Paper} sx={{ boxShadow: "none", height: "662px", minHeight: "662px", overflow: 'hidden' }}>
+        <TableContainer component={Paper} sx={{ boxShadow: "none", height: "659px", minHeight: "659px", overflow: 'hidden' }}>
             <Table>
                 <TableHead>
                     <TableRow>
@@ -27,7 +27,7 @@ const DataTable = ({ data, onSort, sortConfig, onSelectRow, selectedRows, onSele
                                 onChange={(e) => onSelectAll(e.target.checked)}
                             />
                         </TableCell>
-                        <TableCell>
+                        <TableCell sx={{ padding: "25px 16px" }}>
                             <TableSortLabel
                                 active={sortConfig.key === "fullName"}
                                 direction={sortConfig.key === "fullName" ? sortConfig.direction : "asc"}
@@ -36,7 +36,7 @@ const DataTable = ({ data, onSort, sortConfig, onSelectRow, selectedRows, onSele
                                 ФИО
                             </TableSortLabel>
                         </TableCell>
-                        <TableCell>
+                        <TableCell sx={{ padding: "25px 16px" }}>
                             <TableSortLabel
                                 active={sortConfig.key === "recordBookNumber"}
                                 direction={sortConfig.key === "recordBookNumber" ? sortConfig.direction : "asc"}
@@ -45,7 +45,7 @@ const DataTable = ({ data, onSort, sortConfig, onSelectRow, selectedRows, onSele
                                 Номер зачетки
                             </TableSortLabel>
                         </TableCell>
-                        <TableCell>
+                        <TableCell sx={{ padding: "25px 16px" }}>
                             <TableSortLabel
                                 active={sortConfig.key === "group"}
                                 direction={sortConfig.key === "group" ? sortConfig.direction : "asc"}
@@ -54,7 +54,7 @@ const DataTable = ({ data, onSort, sortConfig, onSelectRow, selectedRows, onSele
                                 Группа
                             </TableSortLabel>
                         </TableCell>
-                        <TableCell>
+                        <TableCell sx={{ padding: "25px 16px" }}>
                             <TableSortLabel
                                 active={sortConfig.key === "subgroup"}
                                 direction={sortConfig.key === "subgroup" ? sortConfig.direction : "asc"}
@@ -63,7 +63,7 @@ const DataTable = ({ data, onSort, sortConfig, onSelectRow, selectedRows, onSele
                                 Подгруппа
                             </TableSortLabel>
                         </TableCell>
-                        <TableCell>
+                        <TableCell sx={{ padding: "25px 16px" }}>
                             <TableSortLabel
                                 active={sortConfig.key === "login"}
                                 direction={sortConfig.key === "login" ? sortConfig.direction : "asc"}
@@ -72,7 +72,7 @@ const DataTable = ({ data, onSort, sortConfig, onSelectRow, selectedRows, onSele
                                 Логин
                             </TableSortLabel>
                         </TableCell>
-                        <TableCell>
+                        <TableCell sx={{ padding: "25px 16px" }}>
                             <TableSortLabel
                                 active={sortConfig.key === "password"}
                                 direction={sortConfig.key === "password" ? sortConfig.direction : "asc"}
@@ -92,12 +92,12 @@ const DataTable = ({ data, onSort, sortConfig, onSelectRow, selectedRows, onSele
                                     onChange={() => onSelectRow(row.id)}
                                 />
                             </TableCell>
-                            <TableCell sx={{ padding: "17px 16px" }}>{row.fullName}</TableCell>
-                            <TableCell sx={{ padding: "17px 16px" }}>{row.recordBookNumber}</TableCell>
-                            <TableCell sx={{ padding: "17px 16px" }}>{row.group}</TableCell>
-                            <TableCell sx={{ padding: "17px 16px" }}>{row.subgroup}</TableCell>
-                            <TableCell sx={{ padding: "17px 16px" }}>{row.login}</TableCell>
-                            <TableCell sx={{ padding: "17px 16px" }}>{row.password}</TableCell>
+                            <TableCell>{row.fullName}</TableCell>
+                            <TableCell>{row.recordBookNumber}</TableCell>
+                            <TableCell>{row.group}</TableCell>
+                            <TableCell>{row.subgroup}</TableCell>
+                            <TableCell>{row.login}</TableCell>
+                            <TableCell>{row.password}</TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

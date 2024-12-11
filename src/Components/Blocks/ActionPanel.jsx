@@ -11,7 +11,7 @@ const ActionPanel = ({ selectedCount, onEdit, onDelete, pageCount, onPageChange 
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                marginTop: 2
+                marginTop: '20px'
             }}
         >
             <Box

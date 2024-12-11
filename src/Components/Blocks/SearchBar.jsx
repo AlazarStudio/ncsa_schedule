@@ -9,8 +9,8 @@ const SearchBar = ({ onSearch, value }) => {
                 fullWidth
                 variant="outlined"
                 placeholder="Поиск..."
-                value={value} // Текущее значение строки поиска
-                onChange={(e) => onSearch(e.target.value)} // Вызываем onSearch при изменении
+                value={value}
+                onChange={(e) => onSearch(e.target.value)}
                 InputProps={{
                     startAdornment: (
                         <InputAdornment position="start">
