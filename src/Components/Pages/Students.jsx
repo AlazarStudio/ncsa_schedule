@@ -155,12 +155,22 @@ const Students = () => {
         }
     };
 
+    const columns = [
+        { key: "fullName", label: "ФИО", sortable: true },
+        { key: "recordBookNumber", label: "Номер зачетки", sortable: true },
+        { key: "group", label: "Группа", sortable: true },
+        { key: "subgroup", label: "Подгруппа", sortable: true },
+        { key: "login", label: "Логин", sortable: true },
+        { key: "password", label: "Пароль", sortable: false },
+    ];
+
     return (
         <>
             <PageHeader onAdd={() => handleOpenModal()} />
             <SearchBar onSearch={handleSearch} value={searchQuery} />
             <DataTable
                 data={paginatedData}
+                columns={columns}
                 onSort={handleSort}
                 sortConfig={sortConfig}
                 selectedRows={selectedRows}

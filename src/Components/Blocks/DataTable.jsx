@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
     Table,
     TableBody,
@@ -11,15 +11,24 @@ import {
     TableSortLabel,
 } from "@mui/material";
 
-const DataTable = ({ data, onSort, sortConfig, onSelectRow, selectedRows, onSelectAll }) => {
+const DataTable = ({
+    data,
+    onSort,
+    sortConfig,
+    selectedRows,
+    onSelectRow,
+    onSelectAll,
+    columns, // Новые пропсы
+}) => {
     const isAllSelected = data.length > 0 && data.every((row) => selectedRows.includes(row.id));
     const isSomeSelected = data.some((row) => selectedRows.includes(row.id)) && !isAllSelected;
 
     return (
-        <TableContainer component={Paper} sx={{ boxShadow: "none", height: "659px", minHeight: "659px", overflow: 'hidden' }}>
+        <TableContainer component={Paper} sx={{ boxShadow: "none", height: "659px", minHeight: "659px", overflow: "hidden" }}>
             <Table>
                 <TableHead>
                     <TableRow>
+                        {/* Чекбокс для выбора всех строк */}
                         <TableCell padding="checkbox">
                             <Checkbox
                                 checked={isAllSelected}
@@ -27,63 +36,26 @@ const DataTable = ({ data, onSort, sortConfig, onSelectRow, selectedRows, onSele
                                 onChange={(e) => onSelectAll(e.target.checked)}
                             />
                         </TableCell>
-                        <TableCell sx={{ padding: "25px 16px" }}>
-                            <TableSortLabel
-                                active={sortConfig.key === "fullName"}
-                                direction={sortConfig.key === "fullName" ? sortConfig.direction : "asc"}
-                                onClick={() => onSort("fullName")}
-                            >
-                                ФИО
-                            </TableSortLabel>
-                        </TableCell>
-                        <TableCell sx={{ padding: "25px 16px" }}>
-                            <TableSortLabel
-                                active={sortConfig.key === "recordBookNumber"}
-                                direction={sortConfig.key === "recordBookNumber" ? sortConfig.direction : "asc"}
-                                onClick={() => onSort("recordBookNumber")}
-                            >
-                                Номер зачетки
-                            </TableSortLabel>
-                        </TableCell>
-                        <TableCell sx={{ padding: "25px 16px" }}>
-                            <TableSortLabel
-                                active={sortConfig.key === "group"}
-                                direction={sortConfig.key === "group" ? sortConfig.direction : "asc"}
-                                onClick={() => onSort("group")}
-                            >
-                                Группа
-                            </TableSortLabel>
-                        </TableCell>
-                        <TableCell sx={{ padding: "25px 16px" }}>
-                            <TableSortLabel
-                                active={sortConfig.key === "subgroup"}
-                                direction={sortConfig.key === "subgroup" ? sortConfig.direction : "asc"}
-                                onClick={() => onSort("subgroup")}
-                            >
-                                Подгруппа
-                            </TableSortLabel>
-                        </TableCell>
-                        <TableCell sx={{ padding: "25px 16px" }}>
-                            <TableSortLabel
-                                active={sortConfig.key === "login"}
-                                direction={sortConfig.key === "login" ? sortConfig.direction : "asc"}
-                                onClick={() => onSort("login")}
-                            >
-                                Логин
-                            </TableSortLabel>
-                        </TableCell>
-                        <TableCell sx={{ padding: "25px 16px" }}>
-                            <TableSortLabel
-                                active={sortConfig.key === "password"}
-                                direction={sortConfig.key === "password" ? sortConfig.direction : "asc"}
-                                onClick={() => onSort("password")}
-                            >
-                                Пароль
-                            </TableSortLabel>
-                        </TableCell>
+                        {/* Динамические заголовки */}
+                        {columns.map((column) => (
+                            <TableCell key={column.key} sx={{ padding: "25px 16px" }}>
+                                {column.sortable ? (
+                                    <TableSortLabel
+                                        active={sortConfig.key === column.key}
+                                        direction={sortConfig.key === column.key ? sortConfig.direction : "asc"}
+                                        onClick={() => onSort(column.key)}
+                                    >
+                                        {column.label}
+                                    </TableSortLabel>
+                                ) : (
+                                    column.label
+                                )}
+                            </TableCell>
+                        ))}
                     </TableRow>
                 </TableHead>
                 <TableBody>
+                    {/* Динамические строки */}
                     {data.map((row) => (
                         <TableRow key={row.id} selected={selectedRows.includes(row.id)}>
                             <TableCell padding="checkbox">
@@ -92,12 +64,9 @@ const DataTable = ({ data, onSort, sortConfig, onSelectRow, selectedRows, onSele
                                     onChange={() => onSelectRow(row.id)}
                                 />
                             </TableCell>
-                            <TableCell>{row.fullName}</TableCell>
-                            <TableCell>{row.recordBookNumber}</TableCell>
-                            <TableCell>{row.group}</TableCell>
-                            <TableCell>{row.subgroup}</TableCell>
-                            <TableCell>{row.login}</TableCell>
-                            <TableCell>{row.password}</TableCell>
+                            {columns.map((column) => (
+                                <TableCell key={column.key}>{row[column.key]}</TableCell>
+                            ))}
                         </TableRow>
                     ))}
                 </TableBody>
