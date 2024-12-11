@@ -155,7 +155,11 @@ const Teachers = () => {
 
     const columns = [
         { key: "fullName", label: "ФИО", sortable: true, width: '55%' },
-        { key: "position", label: "Должность", sortable: true, width: '15%' },
+        {
+            width: '15%', key: "position", label: "Должность", type: "select", options: [
+                { value: "Преподаватель", label: "Преподаватель" },
+            ]
+        },
         { key: "login", label: "Логин", sortable: true, width: '15%' },
         { key: "password", label: "Пароль", sortable: true, width: '15%' },
     ];
