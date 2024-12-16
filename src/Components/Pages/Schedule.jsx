@@ -18,9 +18,9 @@ const pairTypes = [
     { id: "type3", label: "Тип 3" },
     { id: "type4", label: "Тип 4" },
     { id: "type5", label: "Тип 5" },
-    { id: "type6", label: "Type 6" },
-    { id: "type7", label: "Type 7" },
-    { id: "type8", label: "Type 8" }
+    { id: "type6", label: "Тип 6" },
+    { id: "type7", label: "Тип 7" },
+    { id: "type8", label: "Тип 8" }
 ];
 
 function Schedule() {
@@ -88,7 +88,7 @@ function Schedule() {
     return (
         <Box display="flex" p={2}>
             {/* Левая панель: расписание */}
-            <Box flex={3} pr={2}>
+            <Box flex={3} pr={'40px'}>
                 {/* Заголовок */}
                 <Typography variant="h5" mb={2}>Расписание</Typography>
 
@@ -158,43 +158,49 @@ function Schedule() {
                                 onDeleteLesson={deleteLesson}
                             />
                         </Box>
-
-                        {/* Кнопка сохранить */}
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={saveSchedule}
-                            sx={{ marginTop: 2 }}
-                        >
-                            Сохранить
-                        </Button>
                     </>
                 )}
             </Box>
 
             {/* Правая панель: выбор типа пары */}
             {selectedGroup && (
-                <Box width={'200px'} pl={2} borderLeft={1} borderColor="grey.300">
-                    <Typography variant="subtitle1" mb={2}>
-                        Выберите тип:
-                    </Typography>
-                    <Grid container spacing={1}>
-                        {pairTypes.map((type) => (
-                            <Grid item xs={12} key={type.id}>
-                                <Button
-                                    variant={
-                                        schedule[activeDay][activePairIndex]?.type === type.id
-                                            ? "contained"
-                                            : "outlined"
-                                    }
-                                    onClick={() => updatePairType(type.id)}
-                                    fullWidth
-                                >
-                                    {type.label}
-                                </Button>
-                            </Grid>
-                        ))}
-                    </Grid>
+                <Box width={'200px'} pl={'40px'} borderLeft={1} borderColor="grey.300" sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    height: 'calc(100vh - 136px)',
+                    justifyContent: 'space-between'
+                }}>
+                    <Box>
+                        <Typography variant="subtitle1" mb={2} sx={{ textAlign: 'center' }}>
+                            Выберите тип:
+                        </Typography>
+                        <Grid container spacing={1}>
+                            {pairTypes.map((type) => (
+                                <Grid item xs={12} key={type.id}>
+                                    <Button
+                                        variant={
+                                            schedule[activeDay][activePairIndex]?.type === type.id
+                                                ? "contained"
+                                                : "outlined"
+                                        }
+                                        onClick={() => updatePairType(type.id)}
+                                        fullWidth
+                                    >
+                                        {type.label}
+                                    </Button>
+                                </Grid>
+                            ))}
+                        </Grid>
+                    </Box>
+
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={saveSchedule}
+                        sx={{ marginTop: 6 }}
+                    >
+                        Сохранить
+                    </Button>
                 </Box>
             )}
         </Box>

@@ -5,7 +5,7 @@ import ScheduleRow from "./ScheduleRow";
 function DaySchedule({ day, lessons, rooms, teachers, onAddLesson, onUpdateLesson, activePairIndex, onPairSelect, onDeleteLesson }) {
     return (
         <Box sx={{
-            maxHeight: '570px',
+            maxHeight: '625px',
             overflow: 'hidden',
             overflowY: 'scroll'
         }}>

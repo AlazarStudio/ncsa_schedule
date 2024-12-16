@@ -160,6 +160,97 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
 
                     </Grid>
                 );
+            case "type6":
+                return (
+                    <Grid container spacing={2} direction="column">
+                        <Grid item>
+                            <Grid container spacing={2}>
+                                <Grid item xs={6}>
+                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                                        <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 1 - Числитель</Typography>
+                                        <Grid container spacing={1} >{renderCommonFields("subgroup1_numerator")}</Grid>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                                        <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 2 - Числитель</Typography>
+                                        <Grid container spacing={1}>{renderCommonFields("subgroup2_numerator")}</Grid>
+                                    </Box>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <Grid item>
+                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                                <Typography variant="subtitle2" mb={2} fontWeight={600}>Знаменатель</Typography>
+                                <Grid container spacing={1}>{renderCommonFields("denominator")}</Grid>
+                            </Box>
+                        </Grid>
+                    </Grid>
+                );
+            case "type7":
+                return (
+                    <Grid container spacing={2} direction="column">
+                        <Grid item>
+                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                                <Typography variant="subtitle2" mb={2} fontWeight={600}>Числитель</Typography>
+                                <Grid container spacing={1}>{renderCommonFields("numerator")}</Grid>
+                            </Box>
+                        </Grid>
+                        <Grid item>
+                            <Grid container spacing={2}>
+                                <Grid item xs={6}>
+                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                                        <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 1 - Знаменатель</Typography>
+                                        <Grid container spacing={1} >{renderCommonFields("subgroup1_denominator")}</Grid>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                                        <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 2 - Знаменатель</Typography>
+                                        <Grid container spacing={1}>{renderCommonFields("subgroup2_denominator")}</Grid>
+                                    </Box>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                );
+            case "type8":
+                return (
+                    <Grid container spacing={2} direction="column">
+                        <Grid item>
+                            <Grid container spacing={2}>
+                                <Grid item xs={6}>
+                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                                        <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 1 - Числитель</Typography>
+                                        <Grid container spacing={1} >{renderCommonFields("subgroup1_numerator")}</Grid>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                                        <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 2 - Числитель</Typography>
+                                        <Grid container spacing={1}>{renderCommonFields("subgroup2_numerator")}</Grid>
+                                    </Box>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                        <Grid item>
+                            <Grid container spacing={2}>
+                                <Grid item xs={6}>
+                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                                        <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 1 - Знаменатель</Typography>
+                                        <Grid container spacing={1} >{renderCommonFields("subgroup1_denominator")}</Grid>
+                                    </Box>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                                        <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 2 - Знаменатель</Typography>
+                                        <Grid container spacing={1}>{renderCommonFields("subgroup2_denominator")}</Grid>
+                                    </Box>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                );
             default:
                 return <Typography variant="body2" color="textSecondary">Неизвестный тип пары</Typography>;
         }
