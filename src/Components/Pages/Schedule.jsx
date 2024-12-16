@@ -187,6 +187,7 @@ function Schedule() {
                                         fullWidth
                                     >
                                         {type.label}
+                                        {/* <img src={`/${type.id}.png`} alt="" /> */}
                                     </Button>
                                 </Grid>
                             ))}
