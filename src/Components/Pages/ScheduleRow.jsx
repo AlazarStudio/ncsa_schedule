@@ -11,8 +11,18 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
     // Генерация общего набора полей
     const renderCommonFields = (prefix) => (
         <>
-            <Grid item xs={3}>
-                <Typography variant="subtitle2" mb={1}>Название занятия</Typography>
+            <Grid item sx={{ width: '10%' }}>
+                <Typography variant="subtitle2" mb={1}>Номер</Typography>
+                <TextField
+                    label="№"
+                    type="number"
+                    value={pairNumber}
+                    onChange={(e) => onChange(index, "pairNumber", e.target.value)}
+                    fullWidth
+                />
+            </Grid>
+            <Grid item sx={{ width: '30%' }}>
+                <Typography variant="subtitle2" mb={1}>Название</Typography>
                 <TextField
                     label={`Название занятия`}
                     value={fields[`${prefix}_subject`] || ""}
@@ -20,7 +30,7 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                     fullWidth
                 />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item sx={{ width: '20%' }}>
                 <Typography variant="subtitle2" mb={1}>Преподаватель</Typography>
                 <Select
                     value={fields[`${prefix}_teacher`] || ""}
@@ -36,7 +46,7 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                     ))}
                 </Select>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item sx={{ width: '20%' }}>
                 <Typography variant="subtitle2" mb={1}>Аудитория</Typography>
                 <Select
                     value={fields[`${prefix}_room`] || ""}
@@ -52,7 +62,7 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                     ))}
                 </Select>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item sx={{ width: '20%' }}>
                 <Typography variant="subtitle2" mb={1}>Тип занятия</Typography>
                 <Select
                     value={fields[`${prefix}_type`] || ""}
@@ -77,6 +87,7 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
             case "type1":
                 return (
                     <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                        <Typography variant="subtitle2" mb={2} fontWeight={600}>Общая</Typography>
                         <Grid container spacing={2}>
                             {renderCommonFields("main")}
                         </Grid>
@@ -87,13 +98,13 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
                             <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
-                                <Typography variant="subtitle2" mb={2}>Подгруппа 1</Typography>
+                                <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 1</Typography>
                                 <Grid container spacing={1} >{renderCommonFields("subgroup1")}</Grid>
                             </Box>
                         </Grid>
                         <Grid item xs={6}>
                             <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
-                                <Typography variant="subtitle2" mb={2}>Подгруппа 2</Typography>
+                                <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 2</Typography>
                                 <Grid container spacing={1}>{renderCommonFields("subgroup2")}</Grid>
                             </Box>
                         </Grid>
@@ -104,13 +115,13 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                     <Grid container spacing={2} direction="column">
                         <Grid item>
                             <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
-                                <Typography variant="subtitle2" mb={2}>Числитель</Typography>
+                                <Typography variant="subtitle2" mb={2} fontWeight={600}>Числитель</Typography>
                                 <Grid container spacing={1}>{renderCommonFields("numerator")}</Grid>
                             </Box>
                         </Grid>
                         <Grid item>
                             <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
-                                <Typography variant="subtitle2" mb={2}>Знаменатель</Typography>
+                                <Typography variant="subtitle2" mb={2} fontWeight={600}>Знаменатель</Typography>
                                 <Grid container spacing={1}>{renderCommonFields("denominator")}</Grid>
                             </Box>
                         </Grid>
@@ -131,7 +142,7 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                         </Grid>
 
                         <Grid item xs={6} >
-                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px', height: '100%' }}>
+                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                                 <Typography variant="body2" mb={2} fontWeight={600}>Подгруппа 2 - Общая</Typography>
                                 <Grid container spacing={1}>{renderCommonFields("subgroup2")}</Grid>
                             </Box>
@@ -142,7 +153,7 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                 return (
                     <Grid container spacing={2} >
                         <Grid item xs={6} >
-                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px', height: '100%' }}>
+                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                                 <Typography variant="body2" mb={2} fontWeight={600}>Подгруппа 1 - Общая</Typography>
                                 <Grid container spacing={1}>{renderCommonFields("subgroup1")}</Grid>
                             </Box>
@@ -258,7 +269,7 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
 
     return (
         <Box
-            p={2}
+            p={3}
             mb={2}
             border={2}
             borderRadius={1}
@@ -267,7 +278,7 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
         >
             {/* Номер пары и тип */}
             <Grid container spacing={2} alignItems="center">
-                <Grid item xs={2}>
+                {/* <Grid item xs={2}>
                     <TextField
                         label="№ пары"
                         type="number"
@@ -275,8 +286,8 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                         onChange={(e) => onChange(index, "pairNumber", e.target.value)}
                         fullWidth
                     />
-                </Grid>
-                <Grid item xs={1} sx={{ position: "absolute", top: -8, right: 8 }}>
+                </Grid> */}
+                <Grid item xs={1} sx={{ position: "absolute", top: -21, right: -7 }}>
                     <IconButton color="error" onClick={onDelete}>
                         <DeleteIcon />
                     </IconButton>
