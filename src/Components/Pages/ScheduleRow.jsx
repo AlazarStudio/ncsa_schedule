@@ -1,9 +1,11 @@
 import React from "react";
-import { Grid, TextField, Select, MenuItem, Typography, Box } from "@mui/material";
+import { Grid, TextField, Select, MenuItem, Typography, Box, IconButton } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 
 const lessonTypes = ["Лекционное занятие", "Практическое занятие", "Лабораторная работа"];
 
-function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive }) {
+function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDelete }) {
     const { pairNumber, type, fields } = lesson;
 
     // Генерация общего набора полей
@@ -112,6 +114,7 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive }) {
             border={2}
             borderRadius={1}
             borderColor={isActive ? "primary.main" : "grey.300"}
+            sx={{ position: "relative" }}
         >
             {/* Номер пары и тип */}
             <Grid container spacing={2} alignItems="center">
@@ -123,6 +126,11 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive }) {
                         onChange={(e) => onChange(index, "pairNumber", e.target.value)}
                         fullWidth
                     />
+                </Grid>
+                <Grid item xs={1} sx={{ position: "absolute", top: -8, right: 8 }}>
+                    <IconButton color="error" onClick={onDelete}>
+                        <DeleteIcon />
+                    </IconButton>
                 </Grid>
                 {/* <Grid item xs={10}>
                     <Typography variant="subtitle2">

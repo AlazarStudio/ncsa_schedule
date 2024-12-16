@@ -76,6 +76,15 @@ function Schedule() {
         alert("Расписание сохранено! Проверьте консоль для подробностей.");
     };
 
+    // Удаление пары по индексу
+    const deleteLesson = (index) => {
+        setSchedule((prev) => {
+            const updatedDay = [...prev[activeDay]];
+            updatedDay.splice(index, 1); // Удаляем элемент по индексу
+            return { ...prev, [activeDay]: updatedDay };
+        });
+    };
+
     return (
         <Box display="flex" p={2}>
             {/* Левая панель: расписание */}
@@ -146,6 +155,7 @@ function Schedule() {
                                 onUpdateLesson={updateLesson}
                                 activePairIndex={activePairIndex}
                                 onPairSelect={setActivePairIndex}
+                                onDeleteLesson={deleteLesson}
                             />
                         </Box>
 
