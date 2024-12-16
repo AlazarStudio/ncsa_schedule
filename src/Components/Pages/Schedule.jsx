@@ -13,11 +13,11 @@ const initialSchedule = {
 };
 
 const pairTypes = [
-    { id: "type1", label: "Type 1" },
-    { id: "type2", label: "Type 2" },
-    { id: "type3", label: "Type 3" },
-    { id: "type4", label: "Type 4" },
-    { id: "type5", label: "Type 5" },
+    { id: "type1", label: "Тип 1" },
+    { id: "type2", label: "Тип 2" },
+    { id: "type3", label: "Тип 3" },
+    { id: "type4", label: "Тип 4" },
+    { id: "type5", label: "Тип 5" },
     { id: "type6", label: "Type 6" },
     { id: "type7", label: "Type 7" },
     { id: "type8", label: "Type 8" }
