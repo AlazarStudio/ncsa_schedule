@@ -371,9 +371,15 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
     // Обновление данных пары
     const updateLesson = (index, field, value) => {
         setSchedule((prev) => {
+            // Изменяем только необходимую запись
+            const updatedLesson = { ...prev[activeDay][index], [field]: value };
             const updatedDay = [...prev[activeDay]];
-            updatedDay[index] = { ...updatedDay[index], [field]: value };
-            return { ...prev, [activeDay]: updatedDay };
+            updatedDay[index] = updatedLesson;
+
+            return {
+                ...prev,
+                [activeDay]: updatedDay
+            };
         });
     };
 

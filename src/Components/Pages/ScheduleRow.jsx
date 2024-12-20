@@ -1,10 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 import { Grid, TextField, Select, MenuItem, Typography, Box, IconButton, Autocomplete } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const lessonTypes = ["Лекционное занятие", "Практическое занятие", "Лабораторная работа"];
 
-function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDelete }) {
+const ScheduleRow = memo(function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDelete }) {
     const { pairNumber, type, fields } = lesson;
 
     // Генерация общего набора полей
@@ -380,6 +380,6 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
             <Box mt={2}>{renderFields()}</Box>
         </Box>
     );
-}
+})
 
 export default ScheduleRow;
