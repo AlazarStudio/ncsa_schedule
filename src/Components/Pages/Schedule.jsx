@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Tabs, Tab, Select, MenuItem, Typography, Grid, Button, Autocomplete, TextField } from "@mui/material";
 import DaySchedule from "./DaySchedule";
 import { rooms, teachers, groups } from "../../data";
+import { useConflicts } from "../Context/ConflictsContext";
 
 const initialSchedule = {
     monday: [],
@@ -24,6 +25,13 @@ const pairTypes = [
 ];
 
 function Schedule({ groupSchedules, setGroupSchedules }) {
+    const { recalculateConflicts } = useConflicts();
+
+    // Пересчитываем конфликты при изменении groupSchedules
+    useEffect(() => {
+        recalculateConflicts(groupSchedules);
+    }, [groupSchedules, recalculateConflicts]);
+
     const [activeDay, setActiveDay] = useState("monday");
     const [selectedGroup, setSelectedGroup] = useState("");
     const [schedule, setSchedule] = useState(initialSchedule);

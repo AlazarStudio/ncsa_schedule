@@ -1,15 +1,121 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, List, ListItem, ListItemText, Divider } from "@mui/material";
+import { useConflicts } from "../Context/ConflictsContext";
 
 function Conflicts({ groupSchedules }) {
     const [conflicts, setConflicts] = useState([]);
+    const { recalculateConflicts } = useConflicts();
+
+    useEffect(() => {
+        recalculateConflicts(groupSchedules); // Пересчитываем конфликты
+    }, [groupSchedules, recalculateConflicts]);
+
+    const daysInRussian = {
+        monday: "Понедельник",
+        tuesday: "Вторник",
+        wednesday: "Среда",
+        thursday: "Четверг",
+        friday: "Пятница",
+        saturday: "Суббота",
+        sunday: "Воскресенье",
+    };
+
+    const fieldNamesInRussian = {
+        pairNumber: "Номер пары",
+        subject: "Название занятия",
+        teacher: "Преподаватель",
+        room: "Аудитория",
+    };
+
+    // Функция для извлечения полей из урока
+    function extractLessonFields(lesson) {
+        const { pairNumber, type, fields } = lesson;
+        const result = [];
+
+        const addFields = (prefix) => {
+            if (fields[`${prefix}_subject`] || fields[`${prefix}_teacher`] || fields[`${prefix}_room`]) {
+                result.push({
+                    pairNumber,
+                    subject: fields[`${prefix}_subject`],
+                    teacher: fields[`${prefix}_teacher`],
+                    room: fields[`${prefix}_room`],
+                    prefix,
+                });
+            }
+        };
+
+        switch (type) {
+            case "type1":
+                addFields("main");
+                break;
+            case "type2":
+                addFields("subgroup1");
+                addFields("subgroup2");
+                break;
+            case "type3":
+                addFields("numerator");
+                addFields("denominator");
+                break;
+            case "type4":
+                addFields("subgroup1_numerator");
+                addFields("subgroup1_denominator");
+                addFields("subgroup2");
+                break;
+            case "type5":
+                addFields("subgroup1");
+                addFields("subgroup2_numerator");
+                addFields("subgroup2_denominator");
+                break;
+            case "type6":
+                addFields("subgroup1_numerator");
+                addFields("subgroup2_numerator");
+                addFields("denominator");
+                break;
+            case "type7":
+                addFields("numerator");
+                addFields("subgroup1_denominator");
+                addFields("subgroup2_denominator");
+                break;
+            case "type8":
+                addFields("subgroup1_numerator");
+                addFields("subgroup2_numerator");
+                addFields("subgroup1_denominator");
+                addFields("subgroup2_denominator");
+                break;
+            default:
+                break;
+        }
+
+        return result;
+    }
+
+    // Функция для нахождения конфликтующих полей
+    const findConflictingFields = (fields1, fields2) => {
+        const fieldsToCheck = ["pairNumber", "subject", "teacher", "room"]; // Убрали "type"
+        const conflicts = [];
+
+        fieldsToCheck.forEach((field) => {
+            const value1 = fields1[field];
+            const value2 = fields2[field];
+
+            if (value1 && value2 && value1 === value2) {
+                conflicts.push({ field, value: value1 });
+            }
+        });
+
+        // Исключаем конфликты, где совпадает только "Номер пары"
+        if (conflicts.length === 1 && conflicts.some((c) => c.field === "pairNumber")) {
+            return [];
+        }
+
+        return conflicts;
+    };
 
     // Логика поиска конфликтов
     useEffect(() => {
         const foundConflicts = [];
         const groups = Object.keys(groupSchedules);
 
-        // Сравнение расписаний между группами
         for (let i = 0; i < groups.length; i++) {
             for (let j = i + 1; j < groups.length; j++) {
                 const group1 = groups[i];
@@ -17,25 +123,37 @@ function Conflicts({ groupSchedules }) {
                 const schedule1 = groupSchedules[group1];
                 const schedule2 = groupSchedules[group2];
 
-                // Проверяем каждый день недели
                 Object.keys(schedule1).forEach((day) => {
-                    const lessons1 = schedule1[day];
-                    const lessons2 = schedule2[day];
+                    const lessons1 = schedule1[day] || [];
+                    const lessons2 = schedule2[day] || [];
 
-                    // Проверяем каждую пару
-                    lessons1.forEach((lesson1, index1) => {
-                        lessons2.forEach((lesson2, index2) => {
-                            const conflictingFields = findConflictingFields(lesson1, lesson2);
-                            if (conflictingFields.length > 0) {
-                                foundConflicts.push({
-                                    group1,
-                                    group2,
-                                    day,
-                                    pairNumber1: lesson1.pairNumber,
-                                    pairNumber2: lesson2.pairNumber,
-                                    conflictingFields
+                    lessons1.forEach((lesson1) => {
+                        lessons2.forEach((lesson2) => {
+                            const fields1 = extractLessonFields(lesson1);
+                            const fields2 = extractLessonFields(lesson2);
+
+                            fields1.forEach((fieldSet1) => {
+                                fields2.forEach((fieldSet2) => {
+                                    const conflictingFields = findConflictingFields(fieldSet1, fieldSet2);
+
+                                    if (conflictingFields.length > 0) {
+                                        const conflictId = `${group1}-${group2}-${day}-${fieldSet1.pairNumber}-${conflictingFields.map((c) => c.field).join(",")}`;
+                                        if (!foundConflicts.some((c) => c.id === conflictId)) {
+                                            foundConflicts.push({
+                                                id: conflictId,
+                                                group1,
+                                                group2,
+                                                day: daysInRussian[day],
+                                                pairNumber1: fieldSet1.pairNumber,
+                                                pairNumber2: fieldSet2.pairNumber,
+                                                conflictingFields,
+                                                details1: fieldSet1,
+                                                details2: fieldSet2,
+                                            });
+                                        }
+                                    }
                                 });
-                            }
+                            });
                         });
                     });
                 });
@@ -44,24 +162,6 @@ function Conflicts({ groupSchedules }) {
 
         setConflicts(foundConflicts);
     }, [groupSchedules]);
-
-    // Функция для нахождения конфликтующих полей
-    const findConflictingFields = (lesson1, lesson2) => {
-        const fieldsToCheck = ["pairNumber", "fields.teacher", "fields.room", "fields.type"];
-        const conflicts = [];
-
-        fieldsToCheck.forEach((field) => {
-            const [field1, field2] = field.split(".");
-            const value1 = field2 ? lesson1[field1]?.[field2] : lesson1[field1];
-            const value2 = field2 ? lesson2[field1]?.[field2] : lesson2[field1];
-
-            if (value1 && value2 && value1 === value2) {
-                conflicts.push(field1 + (field2 ? `.${field2}` : ""));
-            }
-        });
-
-        return conflicts;
-    };
 
     return (
         <Box>
@@ -83,8 +183,25 @@ function Conflicts({ groupSchedules }) {
                                             <Typography variant="body2">
                                                 <strong>Номер пары:</strong> {conflict.pairNumber1} (Группа {conflict.group1}), {conflict.pairNumber2} (Группа {conflict.group2})
                                             </Typography>
+                                            {/* <Typography variant="body2">
+                                                <strong>Совпадающие поля:</strong>
+                                                <ul>
+                                                    {conflict.conflictingFields.map((conflictField, idx) => (
+                                                        <li key={idx}>
+                                                            {fieldNamesInRussian[conflictField.field]}: {conflictField.value}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </Typography> */}
                                             <Typography variant="body2">
-                                                <strong>Поля конфликта:</strong> {conflict.conflictingFields.join(", ")}
+                                                <strong>Описание:</strong> В группе {conflict.group1} и группе {conflict.group2} на {conflict.day} совпадают:
+                                                <ul style={{ paddingLeft: '40px' }}>
+                                                    {conflict.conflictingFields.map((conflictField, idx) => (
+                                                        <li key={idx}>
+                                                            {fieldNamesInRussian[conflictField.field]} — {conflictField.value}.
+                                                        </li>
+                                                    ))}
+                                                </ul>
                                             </Typography>
                                         </>
                                     }

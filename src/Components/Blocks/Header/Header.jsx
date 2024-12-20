@@ -3,6 +3,7 @@ import { AppBar, Toolbar, Typography, Button, InputBase, Box } from '@mui/materi
 import { Search as SearchIcon } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 import { Link, useLocation } from "react-router-dom";
+import { useConflicts } from "../../Context/ConflictsContext";
 
 const StyledLink = styled(Link)(({ theme }) => ({
     textDecoration: 'none',
@@ -16,6 +17,7 @@ const ActiveButton = styled(Button)(({ theme }) => ({
 
 const Header = () => {
     const location = useLocation(); // Получаем текущий URL
+    const { conflictCount } = useConflicts(); // Получаем количество конфликтов
 
     // Определяем, является ли кнопка активной
     const isActive = (path) => location.pathname === path;
@@ -77,9 +79,9 @@ const Header = () => {
 
                     <StyledLink to="/conflicts">
                         {isActive('/conflicts') ? (
-                            <ActiveButton color="inherit">Найти совпадения</ActiveButton>
+                            <ActiveButton color="inherit">Cовпадения {conflictCount > 0 && `(${conflictCount})`}</ActiveButton>
                         ) : (
-                            <Button color="inherit">Найти совпадения</Button>
+                            <Button color="inherit">Cовпадения {conflictCount > 0 && `(${conflictCount})`}</Button>
                         )}
                     </StyledLink>
                 </Box>
