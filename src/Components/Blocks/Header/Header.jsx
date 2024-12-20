@@ -46,7 +46,7 @@ const Header = () => {
                     </StyledLink>
 
                     <StyledLink to="/schedule">
-                        {isActive('/schedule') || isActive('/') ? (
+                        {isActive('/schedule') ? (
                             <ActiveButton color="inherit">Расписание</ActiveButton>
                         ) : (
                             <Button color="inherit">Расписание</Button>

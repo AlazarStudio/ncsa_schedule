@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Tabs, Tab, Typography } from "@mui/material";
+import { Box, Tabs, Tab, Typography, Autocomplete, TextField } from "@mui/material";
 import ViewDaySchedule from "./ViewDaySchedule";
 import { groups } from "../../data";
 
@@ -24,18 +24,15 @@ const ViewSchedule = ({ groupSchedules }) => {
 
             {/* Выбор группы */}
             <Box mb={2}>
-                <select
+                <Autocomplete
                     value={selectedGroup}
-                    onChange={(e) => setSelectedGroup(e.target.value)}
-                    style={{ padding: "8px", fontSize: "16px", width: "100%" }}
-                >
-                    <option value="" disabled>Выберите группу</option>
-                    {groups.map((group) => (
-                        <option key={group.id} value={group.fullName}>
-                            {group.fullName}
-                        </option>
-                    ))}
-                </select>
+                    onChange={(event, newValue) => setSelectedGroup(newValue)}
+                    options={groups.map((group) => group.fullName)}
+                    renderInput={(params) => (
+                        <TextField {...params} label="Выберите группу" variant="outlined" />
+                    )}
+                    fullWidth
+                />
             </Box>
 
             {/* Tabs для дней недели */}
