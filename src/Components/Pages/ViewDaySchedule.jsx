@@ -77,7 +77,7 @@ const ViewDaySchedule = ({ lessons }) => {
                             <div style={{ width: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{pairNumber}</div>
                             <div style={{ borderLeft: "1px solid rgba(129, 33, 45, 0.8)", display: 'flex', gap: '20px', width: '100%' }}>
                                 <div style={{ width: '50%', padding: '12px 25px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                                    <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.6)' }}>Подгруппа 1</div>
+                                    <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Подгруппа 1</div>
                                     <div>{fields.subgroup1_subject || "Не указано"}</div>
                                     <div style={{ display: 'flex', gap: '20px' }}>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_teacher || "Не указана"}</div>
@@ -86,7 +86,7 @@ const ViewDaySchedule = ({ lessons }) => {
                                     </div>
                                 </div>
                                 <div style={{ width: '50%', padding: '12px 25px', borderLeft: "1px solid rgba(129, 33, 45, 0.8)", display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                                    <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.6)' }}>Подгруппа 2</div>
+                                    <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Подгруппа 2</div>
                                     <div>{fields.subgroup2_subject || "Не указано"}</div>
                                     <div style={{ display: 'flex', gap: '20px' }}>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_teacher || "Не указана"}</div>
@@ -117,7 +117,7 @@ const ViewDaySchedule = ({ lessons }) => {
                             <div style={{ width: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{pairNumber}</div>
                             <div style={{ borderLeft: "1px solid rgba(129, 33, 45, 0.8)", display: 'flex', gap: '20px', width: '100%' }}>
                                 <div style={{ width: '50%', padding: '12px 25px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                                    <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.6)' }}>Подгруппа 1</div>
+                                    <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Подгруппа 1</div>
                                     <div>{fields.subgroup1_subject || "Не указано"}</div>
                                     <div style={{ display: 'flex', gap: '20px' }}>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_teacher || "Не указана"}</div>
@@ -126,7 +126,7 @@ const ViewDaySchedule = ({ lessons }) => {
                                     </div>
                                 </div>
                                 <div style={{ width: '50%', padding: '12px 25px', borderLeft: "1px solid rgba(129, 33, 45, 0.8)", display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                                    <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.6)' }}>Подгруппа 2</div>
+                                    <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Подгруппа 2</div>
                                     <div>{fields.subgroup2_subject || "Не указано"}</div>
                                     <div style={{ display: 'flex', gap: '20px' }}>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_teacher || "Не указана"}</div>
