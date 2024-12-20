@@ -10,7 +10,7 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
     // Генерация общего набора полей
     const renderCommonFields = (prefix) => (
         <>
-            <Grid item sx={{ width: '10%' }}>
+            <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
                 {/* <Typography variant="subtitle2" mb={1}>Номер</Typography> */}
                 <TextField
                     label="№"
@@ -18,18 +18,58 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                     value={pairNumber}
                     onChange={(e) => onChange(index, "pairNumber", e.target.value)}
                     fullWidth
+                    sx={{
+                        "& .MuiInputBase-root": {
+                            padding: "0px", // Убираем дополнительные отступы
+                        },
+                        "& .MuiInputBase-input": {
+                            padding: "12px",
+                            fontSize: "14px",
+                        },
+                        "& .MuiInputLabel-root": {
+                            padding: "0px",
+                            fontSize: "14px",
+                            transform: "translate(14px, 12px) scale(1)",
+                        },
+                        "& .MuiInputLabel-shrink": {
+                            transform: "translate(14px, -6px) scale(0.75)", // Позиция для сжатого label
+                        },
+                        "& .MuiAutocomplete-input": {
+                            padding: "12px !important", // Убираем отступы вокруг текста
+                        },
+                    }}
                 />
             </Grid>
-            <Grid item sx={{ width: '30%' }}>
+            <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
                 {/* <Typography variant="subtitle2" mb={1}>Название</Typography> */}
                 <TextField
                     label={`Название занятия`}
                     value={fields[`${prefix}_subject`] || ""}
                     onChange={(e) => onChange(index, "fields", { ...fields, [`${prefix}_subject`]: e.target.value })}
                     fullWidth
+                    sx={{
+                        "& .MuiInputBase-root": {
+                            padding: "0px", // Убираем дополнительные отступы
+                        },
+                        "& .MuiInputBase-input": {
+                            padding: "12px",
+                            fontSize: "14px",
+                        },
+                        "& .MuiInputLabel-root": {
+                            padding: "0px",
+                            fontSize: "14px",
+                            transform: "translate(14px, 12px) scale(1)",
+                        },
+                        "& .MuiInputLabel-shrink": {
+                            transform: "translate(14px, -6px) scale(0.75)", // Позиция для сжатого label
+                        },
+                        "& .MuiAutocomplete-input": {
+                            padding: "12px !important", // Убираем отступы вокруг текста
+                        },
+                    }}
                 />
             </Grid>
-            <Grid item sx={{ width: '20%' }}>
+            <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
                 {/* <Typography variant="subtitle2" mb={1}>Преподаватель</Typography> */}
                 <Autocomplete
                     options={teachers.map((teacher) => teacher.fullName)}
@@ -38,11 +78,31 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                         onChange(index, "fields", { ...fields, [`${prefix}_teacher`]: newValue })
                     }
                     renderInput={(params) => (
-                        <TextField {...params} label="Выберите преподавателя" variant="outlined" fullWidth />
+                        <TextField {...params} label="Выберите преподавателя" variant="outlined" fullWidth
+                            sx={{
+                                "& .MuiInputBase-root": {
+                                    padding: "0px", // Убираем дополнительные отступы
+                                },
+                                "& .MuiInputBase-input": {
+                                    padding: "12px",
+                                    fontSize: "14px",
+                                },
+                                "& .MuiInputLabel-root": {
+                                    padding: "0px",
+                                    fontSize: "14px",
+                                    transform: "translate(14px, 12px) scale(1)",
+                                },
+                                "& .MuiInputLabel-shrink": {
+                                    transform: "translate(14px, -6px) scale(0.75)", // Позиция для сжатого label
+                                },
+                                "& .MuiAutocomplete-input": {
+                                    padding: "12px !important", // Убираем отступы вокруг текста
+                                },
+                            }} />
                     )}
                 />
             </Grid>
-            <Grid item sx={{ width: '20%' }}>
+            <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
                 {/* <Typography variant="subtitle2" mb={1}>Аудитория</Typography> */}
                 <Autocomplete
                     options={rooms.map((room) => room.fullName)}
@@ -51,11 +111,31 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                         onChange(index, "fields", { ...fields, [`${prefix}_room`]: newValue })
                     }
                     renderInput={(params) => (
-                        <TextField {...params} label="Выберите аудиторию" variant="outlined" fullWidth />
+                        <TextField {...params} label="Выберите аудиторию" variant="outlined" fullWidth
+                            sx={{
+                                "& .MuiInputBase-root": {
+                                    padding: "0px", // Убираем дополнительные отступы
+                                },
+                                "& .MuiInputBase-input": {
+                                    padding: "12px",
+                                    fontSize: "14px",
+                                },
+                                "& .MuiInputLabel-root": {
+                                    padding: "0px",
+                                    fontSize: "14px",
+                                    transform: "translate(14px, 12px) scale(1)",
+                                },
+                                "& .MuiInputLabel-shrink": {
+                                    transform: "translate(14px, -6px) scale(0.75)", // Позиция для сжатого label
+                                },
+                                "& .MuiAutocomplete-input": {
+                                    padding: "12px !important", // Убираем отступы вокруг текста
+                                },
+                            }} />
                     )}
                 />
             </Grid>
-            <Grid item sx={{ width: '20%' }}>
+            <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
                 {/* <Typography variant="subtitle2" mb={1}>Тип занятия</Typography> */}
                 <Autocomplete
                     options={lessonTypes}
@@ -64,7 +144,27 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                         onChange(index, "fields", { ...fields, [`${prefix}_type`]: newValue })
                     }
                     renderInput={(params) => (
-                        <TextField {...params} label="Выберите тип занятия" variant="outlined" fullWidth />
+                        <TextField {...params} label="Выберите тип занятия" variant="outlined" fullWidth
+                            sx={{
+                                "& .MuiInputBase-root": {
+                                    padding: "0px", // Убираем дополнительные отступы
+                                },
+                                "& .MuiInputBase-input": {
+                                    padding: "12px",
+                                    fontSize: "14px",
+                                },
+                                "& .MuiInputLabel-root": {
+                                    padding: "0px",
+                                    fontSize: "14px",
+                                    transform: "translate(14px, 12px) scale(1)",
+                                },
+                                "& .MuiInputLabel-shrink": {
+                                    transform: "translate(14px, -6px) scale(0.75)",
+                                },
+                                "& .MuiAutocomplete-input": {
+                                    padding: "12px !important", // Убираем отступы вокруг текста
+                                },
+                            }} />
                     )}
                 />
             </Grid>
@@ -76,7 +176,7 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
         switch (type) {
             case "type1":
                 return (
-                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px' }}>
                         <Typography variant="subtitle2" mb={2} fontWeight={600}>Общая</Typography>
                         <Grid container spacing={2}>
                             {renderCommonFields("main")}
@@ -87,13 +187,13 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                 return (
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
-                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px' }}>
                                 <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 1</Typography>
                                 <Grid container spacing={1} >{renderCommonFields("subgroup1")}</Grid>
                             </Box>
                         </Grid>
                         <Grid item xs={6}>
-                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px' }}>
                                 <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 2</Typography>
                                 <Grid container spacing={1}>{renderCommonFields("subgroup2")}</Grid>
                             </Box>
@@ -104,13 +204,13 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                 return (
                     <Grid container spacing={2} direction="column">
                         <Grid item>
-                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px' }}>
                                 <Typography variant="subtitle2" mb={2} fontWeight={600}>Числитель</Typography>
                                 <Grid container spacing={1}>{renderCommonFields("numerator")}</Grid>
                             </Box>
                         </Grid>
                         <Grid item>
-                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px' }}>
                                 <Typography variant="subtitle2" mb={2} fontWeight={600}>Знаменатель</Typography>
                                 <Grid container spacing={1}>{renderCommonFields("denominator")}</Grid>
                             </Box>
@@ -121,18 +221,18 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                 return (
                     <Grid container spacing={2} >
                         <Grid item xs={6}>
-                            <Box mb={2} sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                            <Box mb={2} sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px' }}>
                                 <Typography variant="body2" mb={2} fontWeight={600}>Подгруппа 1 - Числитель</Typography>
                                 <Grid container spacing={1}>{renderCommonFields("subgroup1_numerator")}</Grid>
                             </Box>
-                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px' }}>
                                 <Typography variant="body2" mb={2} fontWeight={600}>Подгруппа 1 - Знаменатель</Typography>
                                 <Grid container spacing={1}>{renderCommonFields("subgroup1_denominator")}</Grid>
                             </Box>
                         </Grid>
 
                         <Grid item xs={6} >
-                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                                 <Typography variant="body2" mb={2} fontWeight={600}>Подгруппа 2 - Общая</Typography>
                                 <Grid container spacing={1}>{renderCommonFields("subgroup2")}</Grid>
                             </Box>
@@ -143,17 +243,17 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                 return (
                     <Grid container spacing={2} >
                         <Grid item xs={6} >
-                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                                 <Typography variant="body2" mb={2} fontWeight={600}>Подгруппа 1 - Общая</Typography>
                                 <Grid container spacing={1}>{renderCommonFields("subgroup1")}</Grid>
                             </Box>
                         </Grid>
                         <Grid item xs={6}>
-                            <Box mb={2} sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                            <Box mb={2} sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px' }}>
                                 <Typography variant="body2" mb={2} fontWeight={600}>Подгруппа 2 - Числитель</Typography>
                                 <Grid container spacing={1}>{renderCommonFields("subgroup2_numerator")}</Grid>
                             </Box>
-                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px' }}>
                                 <Typography variant="body2" mb={2} fontWeight={600}>Подгруппа 2 - Знаменатель</Typography>
                                 <Grid container spacing={1}>{renderCommonFields("subgroup2_denominator")}</Grid>
                             </Box>
@@ -167,13 +267,13 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                         <Grid item>
                             <Grid container spacing={2}>
                                 <Grid item xs={6}>
-                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px' }}>
                                         <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 1 - Числитель</Typography>
                                         <Grid container spacing={1} >{renderCommonFields("subgroup1_numerator")}</Grid>
                                     </Box>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px' }}>
                                         <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 2 - Числитель</Typography>
                                         <Grid container spacing={1}>{renderCommonFields("subgroup2_numerator")}</Grid>
                                     </Box>
@@ -181,7 +281,7 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                             </Grid>
                         </Grid>
                         <Grid item>
-                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px' }}>
                                 <Typography variant="subtitle2" mb={2} fontWeight={600}>Знаменатель</Typography>
                                 <Grid container spacing={1}>{renderCommonFields("denominator")}</Grid>
                             </Box>
@@ -192,7 +292,7 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                 return (
                     <Grid container spacing={2} direction="column">
                         <Grid item>
-                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                            <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px' }}>
                                 <Typography variant="subtitle2" mb={2} fontWeight={600}>Числитель</Typography>
                                 <Grid container spacing={1}>{renderCommonFields("numerator")}</Grid>
                             </Box>
@@ -200,13 +300,13 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                         <Grid item>
                             <Grid container spacing={2}>
                                 <Grid item xs={6}>
-                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px' }}>
                                         <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 1 - Знаменатель</Typography>
                                         <Grid container spacing={1} >{renderCommonFields("subgroup1_denominator")}</Grid>
                                     </Box>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px' }}>
                                         <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 2 - Знаменатель</Typography>
                                         <Grid container spacing={1}>{renderCommonFields("subgroup2_denominator")}</Grid>
                                     </Box>
@@ -221,13 +321,13 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                         <Grid item>
                             <Grid container spacing={2}>
                                 <Grid item xs={6}>
-                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px' }}>
                                         <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 1 - Числитель</Typography>
                                         <Grid container spacing={1} >{renderCommonFields("subgroup1_numerator")}</Grid>
                                     </Box>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px' }}>
                                         <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 2 - Числитель</Typography>
                                         <Grid container spacing={1}>{renderCommonFields("subgroup2_numerator")}</Grid>
                                     </Box>
@@ -237,13 +337,13 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                         <Grid item>
                             <Grid container spacing={2}>
                                 <Grid item xs={6}>
-                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px' }}>
                                         <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 1 - Знаменатель</Typography>
                                         <Grid container spacing={1} >{renderCommonFields("subgroup1_denominator")}</Grid>
                                     </Box>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '15px', borderRadius: '4px' }}>
+                                    <Box sx={{ border: '1px solid rgba(0, 0, 0, 0.23)', padding: '10px', borderRadius: '4px' }}>
                                         <Typography variant="subtitle2" mb={2} fontWeight={600}>Подгруппа 2 - Знаменатель</Typography>
                                         <Grid container spacing={1}>{renderCommonFields("subgroup2_denominator")}</Grid>
                                     </Box>
@@ -259,7 +359,7 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
 
     return (
         <Box
-            p={3}
+            p={2}
             mb={2}
             border={2}
             borderRadius={1}

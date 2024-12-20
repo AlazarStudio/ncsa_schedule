@@ -14,14 +14,320 @@ const initialSchedule = {
 };
 
 const pairTypes = [
-    { id: "type1", label: "Тип 1" },
-    { id: "type2", label: "Тип 2" },
-    { id: "type3", label: "Тип 3" },
-    { id: "type4", label: "Тип 4" },
-    { id: "type5", label: "Тип 5" },
-    { id: "type6", label: "Тип 6" },
-    { id: "type7", label: "Тип 7" },
-    { id: "type8", label: "Тип 8" }
+    {
+        id: "type1",
+        label:
+            (isActive) => <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '5px',
+                width: '100%',
+            }}>
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    border: isActive
+                        ? "1px solid white"
+                        : "1px solid rgba(129, 33, 45, 0.5)",
+                    width: '100%',
+                    height: '25px',
+                }}>
+                    <div style={{ width: '50%', height: '100%' }}></div>
+                    <div style={{ width: '50%', height: '100%', }}></div>
+                </div>
+            </div>
+    },
+    {
+        id: "type2",
+        label:
+            (isActive) => <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '5px',
+                width: '100%',
+            }}>
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    border: isActive
+                        ? "1px solid white"
+                        : "1px solid rgba(129, 33, 45, 0.5)",
+                    width: '100%',
+                    height: '25px',
+                }}>
+                    <div style={{
+                        width: '50%', height: '100%', borderRight: isActive
+                            ? "1px solid white"
+                            : "1px solid rgba(129, 33, 45, 0.5)",
+                    }}></div>
+                    <div style={{ width: '50%', height: '100%', }}></div>
+                </div>
+            </div>
+    },
+    {
+        id: "type3",
+        label:
+            (isActive) => <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '5px',
+                width: '100%',
+            }}>
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    border: isActive
+                        ? "1px solid white"
+                        : "1px solid rgba(129, 33, 45, 0.5)",
+                    width: '100%',
+                    height: '50px',
+                }}>
+                    <div style={{
+                        width: '100%', height: '50%', borderBottom: isActive
+                            ? "1px solid white"
+                            : "1px solid rgba(129, 33, 45, 0.5)",
+                    }}></div>
+                    <div style={{ width: '100%', height: '50%', }}></div>
+                </div>
+            </div>
+    },
+    {
+        id: "type4",
+        label:
+            (isActive) => <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '5px',
+                width: '100%',
+            }}>
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    border: isActive
+                        ? "1px solid white"
+                        : "1px solid rgba(129, 33, 45, 0.5)",
+                    width: '100%',
+                    height: '50px',
+                }}>
+                    <div style={{
+                        width: '50%', height: '100%', borderRight: isActive
+                            ? "1px solid white"
+                            : "1px solid rgba(129, 33, 45, 0.5)",
+                    }}>
+                        <div style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-between',
+                            width: '100%',
+                            height: '100%',
+                        }}>
+                            <div style={{
+                                width: '100%', height: '50%', borderBottom: isActive
+                                    ? "1px solid white"
+                                    : "1px solid rgba(129, 33, 45, 0.5)",
+                            }}></div>
+                            <div style={{ width: '100%', height: '50%', }}></div>
+                        </div>
+                    </div>
+                    <div style={{ width: '50%', height: '100%', }}></div>
+                </div>
+            </div>
+    },
+    {
+        id: "type5",
+        label:
+            (isActive) => <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '5px',
+                width: '100%',
+            }}>
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    border: isActive
+                        ? "1px solid white"
+                        : "1px solid rgba(129, 33, 45, 0.5)",
+                    width: '100%',
+                    height: '50px',
+                }}>
+                    <div style={{ width: '50%', height: '100%', }}></div>
+                    <div style={{
+                        width: '50%', height: '100%', borderLeft: isActive
+                            ? "1px solid white"
+                            : "1px solid rgba(129, 33, 45, 0.5)",
+                    }}>
+                        <div style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'space-between',
+                            width: '100%',
+                            height: '100%',
+                        }}>
+                            <div style={{
+                                width: '100%', height: '50%', borderBottom: isActive
+                                    ? "1px solid white"
+                                    : "1px solid rgba(129, 33, 45, 0.5)",
+                            }}></div>
+                            <div style={{ width: '100%', height: '50%', }}></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    },
+    {
+        id: "type6",
+        label:
+            (isActive) => <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '5px',
+                width: '100%',
+            }}>
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    border: isActive
+                        ? "1px solid white"
+                        : "1px solid rgba(129, 33, 45, 0.5)",
+                    width: '100%',
+                    height: '50px',
+                }}>
+                    <div style={{
+                        width: '100%', height: '50%', borderBottom: isActive
+                            ? "1px solid white"
+                            : "1px solid rgba(129, 33, 45, 0.5)",
+                    }}>
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            width: '100%',
+                            height: '100%',
+                        }}>
+                            <div style={{
+                                width: '50%', height: '100%', borderRight: isActive
+                                    ? "1px solid white"
+                                    : "1px solid rgba(129, 33, 45, 0.5)",
+                            }}></div>
+                            <div style={{ width: '50%', height: '100%', }}></div>
+                        </div>
+                    </div>
+                    <div style={{ width: '100%', height: '50%', }}></div>
+                </div>
+            </div>
+    },
+    {
+        id: "type7",
+        label:
+            (isActive) => <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '5px',
+                width: '100%',
+            }}>
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    border: isActive
+                        ? "1px solid white"
+                        : "1px solid rgba(129, 33, 45, 0.5)",
+                    width: '100%',
+                    height: '50px',
+                }}>
+                    <div style={{ width: '100%', height: '50%', }}></div>
+                    <div style={{
+                        width: '100%', height: '50%', borderTop: isActive
+                            ? "1px solid white"
+                            : "1px solid rgba(129, 33, 45, 0.5)",
+                    }}>
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            width: '100%',
+                            height: '100%',
+                        }}>
+                            <div style={{
+                                width: '50%', height: '100%', borderRight: isActive
+                                    ? "1px solid white"
+                                    : "1px solid rgba(129, 33, 45, 0.5)",
+                            }}></div>
+                            <div style={{ width: '50%', height: '100%', }}></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    },
+    {
+        id: "type8",
+        label:
+            (isActive) => <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '5px',
+                width: '100%',
+            }}>
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    border: isActive
+                        ? "1px solid white"
+                        : "1px solid rgba(129, 33, 45, 0.5)",
+                    width: '100%',
+                    height: '50px',
+                }}>
+                    <div style={{
+                        width: '100%', height: '50%', borderBottom: isActive
+                            ? "1px solid white"
+                            : "1px solid rgba(129, 33, 45, 0.5)",
+                    }}>
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            width: '100%',
+                            height: '100%',
+                        }}>
+                            <div style={{
+                                width: '50%', height: '100%', borderRight: isActive
+                                    ? "1px solid white"
+                                    : "1px solid rgba(129, 33, 45, 0.5)",
+                            }}></div>
+                            <div style={{ width: '50%', height: '100%', }}></div>
+                        </div>
+                    </div>
+                    <div style={{ width: '100%', height: '50%' }}>
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            width: '100%',
+                            height: '100%',
+                        }}>
+                            <div style={{
+                                width: '50%', height: '100%', borderRight: isActive
+                                    ? "1px solid white"
+                                    : "1px solid rgba(129, 33, 45, 0.5)",
+                            }}></div>
+                            <div style={{ width: '50%', height: '100%', }}></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    },
 ];
 
 function Schedule({ groupSchedules, setGroupSchedules }) {
@@ -112,7 +418,7 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
     return (
         <Box display="flex" p={2}>
             {/* Левая панель: расписание */}
-            <Box flex={3} pr={'40px'}>
+            <Box flex={3} pr={'50px'}>
                 {/* Заголовок */}
                 <Typography variant="h5" mb={2}>Расписание</Typography>
 
@@ -190,7 +496,7 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
 
             {/* Правая панель: выбор типа пары */}
             {selectedGroup && (
-                <Box width={'200px'} pl={'40px'} borderLeft={1} borderColor="grey.300" sx={{
+                <Box width={'200px'} pl={'50px'} borderLeft={1} borderColor="grey.300" sx={{
                     display: 'flex',
                     flexDirection: 'column',
                     height: 'calc(100vh - 136px)',
@@ -201,22 +507,29 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
                             Выберите тип:
                         </Typography>
                         <Grid container spacing={1}>
-                            {pairTypes.map((type) => (
-                                <Grid item xs={12} key={type.id}>
-                                    <Button
-                                        variant={
-                                            schedule[activeDay][activePairIndex]?.type === type.id
-                                                ? "contained"
-                                                : "outlined"
-                                        }
-                                        onClick={() => updatePairType(type.id)}
-                                        fullWidth
-                                    >
-                                        {type.label}
-                                    </Button>
-                                </Grid>
-                            ))}
+                            {pairTypes.map((type) => {
+                                const isActive = schedule[activeDay][activePairIndex]?.type === type.id;
+
+                                return (
+                                    <Grid item xs={12} key={type.id}>
+                                        <Button
+                                            onClick={() => updatePairType(type.id)}
+                                            fullWidth
+                                            style={{
+                                                padding: "10px",
+                                                backgroundColor: isActive ? "#81212D" : "transparent",
+                                                color: isActive ? "#fff" : "#000",
+                                                border: "1px solid rgba(129, 33, 45, 0.5)",
+                                                borderRadius: "5px",
+                                            }}
+                                        >
+                                            {type.label(isActive)} {/* Передача isActive в label */}
+                                        </Button>
+                                    </Grid>
+                                );
+                            })}
                         </Grid>
+
                     </Box>
 
                     <Button
