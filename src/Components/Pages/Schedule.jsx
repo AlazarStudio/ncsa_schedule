@@ -394,6 +394,13 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
         });
     };
 
+    useEffect(() => {
+        // Если activePairIndex больше, чем количество занятий, сбросим его
+        if (activePairIndex !== null && schedule[activeDay].length <= activePairIndex) {
+            setActivePairIndex(null);
+        }
+    }, [schedule, activeDay, activePairIndex]);
+
     // Сохранение расписания для текущей группы
     const saveSchedule = () => {
         if (!selectedGroup) {
@@ -416,9 +423,9 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
     };
 
     return (
-        <Box display="flex" p={2}>
+        <Box p={2} sx={{ display: 'flex', gap: '50px' }}>
             {/* Левая панель: расписание */}
-            <Box flex={3} pr={'50px'}>
+            <Box flex={3} >
                 {/* Заголовок */}
                 <Typography variant="h5" mb={2}>Расписание</Typography>
 
@@ -495,7 +502,7 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
             </Box>
 
             {/* Правая панель: выбор типа пары */}
-            {selectedGroup && (
+            {(selectedGroup && activePairIndex != null) && (
                 <Box width={'200px'} pl={'50px'} borderLeft={1} borderColor="grey.300" sx={{
                     display: 'flex',
                     flexDirection: 'column',

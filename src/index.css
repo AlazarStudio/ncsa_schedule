@@ -60,3 +60,19 @@ main {
     color: #fff;
     border-color: #81212D;
 }
+
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #81212D;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #81212D;
+}

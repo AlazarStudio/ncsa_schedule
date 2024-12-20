@@ -361,6 +361,7 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
         <Box
             p={2}
             mb={2}
+            mr={1}
             border={2}
             borderRadius={1}
             borderColor={isActive ? "primary.main" : "grey.300"}
@@ -368,7 +369,7 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
         >
             {/* Номер пары и тип */}
             <Grid container spacing={2} alignItems="center">
-                <Grid item xs={1} sx={{ position: "absolute", top: -21, right: -7 }}>
+                <Grid item xs={1} sx={{ position: "absolute", top: 0, right: 15 }}>
                     <IconButton color="error" onClick={onDelete}>
                         <DeleteIcon />
                     </IconButton>
