@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Box, Tabs, Tab, Select, MenuItem, Typography, Grid, Button } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, Tabs, Tab, Select, MenuItem, Typography, Grid, Button, Autocomplete, TextField } from "@mui/material";
 import DaySchedule from "./DaySchedule";
 import { rooms, teachers, groups } from "../../data";
 
@@ -23,22 +23,28 @@ const pairTypes = [
     { id: "type8", label: "Тип 8" }
 ];
 
-function Schedule() {
+function Schedule({ groupSchedules, setGroupSchedules }) {
     const [activeDay, setActiveDay] = useState("monday");
     const [selectedGroup, setSelectedGroup] = useState("");
     const [schedule, setSchedule] = useState(initialSchedule);
     const [activePairIndex, setActivePairIndex] = useState(null);
 
+    useEffect(() => {
+        const lastGroup = localStorage.getItem("lastSelectedGroup");
+        if (lastGroup) {
+            setSelectedGroup(lastGroup);
+            setSchedule(groupSchedules[lastGroup] || initialSchedule);
+        }
+    }, [groupSchedules]);
+
     // Добавление новой пары
     const addLesson = (day) => {
         setSchedule((prev) => {
-            // Находим максимальный pairNumber в текущем дне
             const currentLessons = prev[day];
             const maxPairNumber = currentLessons.reduce(
                 (max, lesson) => Math.max(max, Number(lesson.pairNumber || 0)),
                 0
             );
-
             return {
                 ...prev,
                 [day]: [
@@ -48,7 +54,6 @@ function Schedule() {
             };
         });
     };
-
 
     // Обновление данных пары
     const updateLesson = (index, field, value) => {
@@ -66,23 +71,34 @@ function Schedule() {
         }
     };
 
-    // Сохранение расписания
-    const saveSchedule = () => {
-        const result = {
-            group: selectedGroup,
-            schedule
-        };
-        console.log("Сохранённое расписание:", result);
-        alert("Расписание сохранено! Проверьте консоль для подробностей.");
-    };
-
     // Удаление пары по индексу
     const deleteLesson = (index) => {
         setSchedule((prev) => {
             const updatedDay = [...prev[activeDay]];
-            updatedDay.splice(index, 1); // Удаляем элемент по индексу
+            updatedDay.splice(index, 1);
             return { ...prev, [activeDay]: updatedDay };
         });
+    };
+
+    // Сохранение расписания для текущей группы
+    const saveSchedule = () => {
+        if (!selectedGroup) {
+            alert("Выберите группу перед сохранением расписания.");
+            return;
+        }
+        setGroupSchedules((prev) => ({
+            ...prev,
+            [selectedGroup]: schedule
+        }));
+        alert("Расписание сохранено!");
+    };
+
+    // Загрузка расписания при выборе группы
+    const handleGroupChange = (group) => {
+        setSelectedGroup(group);
+        setSchedule(groupSchedules[group] || initialSchedule); // Загружаем расписание, если оно есть
+        setActivePairIndex(null); // Сбрасываем выбранную пару
+        localStorage.setItem("lastSelectedGroup", group); // Сохраняем в localStorage
     };
 
     return (
@@ -94,19 +110,22 @@ function Schedule() {
 
                 {/* Выбор группы */}
                 <Box mb={2}>
-                    <Select
+                    <Autocomplete
                         value={selectedGroup}
-                        onChange={(e) => setSelectedGroup(e.target.value)}
-                        displayEmpty
-                        fullWidth
-                    >
-                        <MenuItem value="" disabled>Выберите группу</MenuItem>
-                        {groups.map((group) => (
-                            <MenuItem key={group.id} value={group.fullName}>
-                                {group.fullName}
-                            </MenuItem>
-                        ))}
-                    </Select>
+                        onChange={(event, newValue) => handleGroupChange(newValue)}
+                        options={groups.map((group) => group.fullName)}
+                        renderInput={(params) => (
+                            <TextField {...params} label="Выберите группу" variant="outlined" fullWidth />
+                        )}
+                        filterOptions={(options, { inputValue }) => {
+                            // Показываем только первые 5 вариантов или фильтруем по вводу
+                            const filtered = options.filter((option) =>
+                                option.toLowerCase().includes(inputValue.toLowerCase())
+                            );
+                            return filtered.slice(0, 5); // Ограничиваем 5 элементами
+                        }}
+                        isOptionEqualToValue={(option, value) => option === value}
+                    />
                 </Box>
 
                 {/* Tabs для дней недели */}
@@ -140,7 +159,6 @@ function Schedule() {
                         </Button>
                     </Box>
                 )}
-
 
                 {/* Расписание для выбранного дня */}
                 {selectedGroup && (
@@ -187,7 +205,6 @@ function Schedule() {
                                         fullWidth
                                     >
                                         {type.label}
-                                        {/* <img src={`/${type.id}.png`} alt="" /> */}
                                     </Button>
                                 </Grid>
                             ))}

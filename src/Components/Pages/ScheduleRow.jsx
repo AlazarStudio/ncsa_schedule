@@ -1,7 +1,6 @@
 import React from "react";
-import { Grid, TextField, Select, MenuItem, Typography, Box, IconButton } from "@mui/material";
+import { Grid, TextField, Select, MenuItem, Typography, Box, IconButton, Autocomplete } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-
 
 const lessonTypes = ["Лекционное занятие", "Практическое занятие", "Лабораторная работа"];
 
@@ -12,7 +11,7 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
     const renderCommonFields = (prefix) => (
         <>
             <Grid item sx={{ width: '10%' }}>
-                <Typography variant="subtitle2" mb={1}>Номер</Typography>
+                {/* <Typography variant="subtitle2" mb={1}>Номер</Typography> */}
                 <TextField
                     label="№"
                     type="number"
@@ -22,7 +21,7 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                 />
             </Grid>
             <Grid item sx={{ width: '30%' }}>
-                <Typography variant="subtitle2" mb={1}>Название</Typography>
+                {/* <Typography variant="subtitle2" mb={1}>Название</Typography> */}
                 <TextField
                     label={`Название занятия`}
                     value={fields[`${prefix}_subject`] || ""}
@@ -31,52 +30,43 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
                 />
             </Grid>
             <Grid item sx={{ width: '20%' }}>
-                <Typography variant="subtitle2" mb={1}>Преподаватель</Typography>
-                <Select
+                {/* <Typography variant="subtitle2" mb={1}>Преподаватель</Typography> */}
+                <Autocomplete
+                    options={teachers.map((teacher) => teacher.fullName)}
                     value={fields[`${prefix}_teacher`] || ""}
-                    onChange={(e) => onChange(index, "fields", { ...fields, [`${prefix}_teacher`]: e.target.value })}
-                    displayEmpty
-                    fullWidth
-                >
-                    <MenuItem value="" disabled>Выберите преподавателя</MenuItem>
-                    {teachers.map((teacher) => (
-                        <MenuItem key={teacher.id} value={teacher.fullName}>
-                            {teacher.fullName}
-                        </MenuItem>
-                    ))}
-                </Select>
+                    onChange={(e, newValue) =>
+                        onChange(index, "fields", { ...fields, [`${prefix}_teacher`]: newValue })
+                    }
+                    renderInput={(params) => (
+                        <TextField {...params} label="Выберите преподавателя" variant="outlined" fullWidth />
+                    )}
+                />
             </Grid>
             <Grid item sx={{ width: '20%' }}>
-                <Typography variant="subtitle2" mb={1}>Аудитория</Typography>
-                <Select
+                {/* <Typography variant="subtitle2" mb={1}>Аудитория</Typography> */}
+                <Autocomplete
+                    options={rooms.map((room) => room.fullName)}
                     value={fields[`${prefix}_room`] || ""}
-                    onChange={(e) => onChange(index, "fields", { ...fields, [`${prefix}_room`]: e.target.value })}
-                    displayEmpty
-                    fullWidth
-                >
-                    <MenuItem value="" disabled>Выберите аудиторию</MenuItem>
-                    {rooms.map((room) => (
-                        <MenuItem key={room.id} value={room.fullName}>
-                            {room.fullName}
-                        </MenuItem>
-                    ))}
-                </Select>
+                    onChange={(e, newValue) =>
+                        onChange(index, "fields", { ...fields, [`${prefix}_room`]: newValue })
+                    }
+                    renderInput={(params) => (
+                        <TextField {...params} label="Выберите аудиторию" variant="outlined" fullWidth />
+                    )}
+                />
             </Grid>
             <Grid item sx={{ width: '20%' }}>
-                <Typography variant="subtitle2" mb={1}>Тип занятия</Typography>
-                <Select
+                {/* <Typography variant="subtitle2" mb={1}>Тип занятия</Typography> */}
+                <Autocomplete
+                    options={lessonTypes}
                     value={fields[`${prefix}_type`] || ""}
-                    onChange={(e) => onChange(index, "fields", { ...fields, [`${prefix}_type`]: e.target.value })}
-                    displayEmpty
-                    fullWidth
-                >
-                    <MenuItem value="" disabled>Выберите тип занятия</MenuItem>
-                    {lessonTypes.map((type, i) => (
-                        <MenuItem key={i} value={type}>
-                            {type}
-                        </MenuItem>
-                    ))}
-                </Select>
+                    onChange={(e, newValue) =>
+                        onChange(index, "fields", { ...fields, [`${prefix}_type`]: newValue })
+                    }
+                    renderInput={(params) => (
+                        <TextField {...params} label="Выберите тип занятия" variant="outlined" fullWidth />
+                    )}
+                />
             </Grid>
         </>
     );
@@ -278,25 +268,11 @@ function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDel
         >
             {/* Номер пары и тип */}
             <Grid container spacing={2} alignItems="center">
-                {/* <Grid item xs={2}>
-                    <TextField
-                        label="№ пары"
-                        type="number"
-                        value={pairNumber}
-                        onChange={(e) => onChange(index, "pairNumber", e.target.value)}
-                        fullWidth
-                    />
-                </Grid> */}
                 <Grid item xs={1} sx={{ position: "absolute", top: -21, right: -7 }}>
                     <IconButton color="error" onClick={onDelete}>
                         <DeleteIcon />
                     </IconButton>
                 </Grid>
-                {/* <Grid item xs={10}>
-                    <Typography variant="subtitle2">
-                        Текущий тип пары: {type}
-                    </Typography>
-                </Grid> */}
             </Grid>
 
             {/* Поля ввода */}
