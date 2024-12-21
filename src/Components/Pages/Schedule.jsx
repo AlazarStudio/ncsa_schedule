@@ -346,7 +346,7 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
         const lastGroup = localStorage.getItem("lastSelectedGroup");
         if (lastGroup) {
             setSelectedGroup(lastGroup);
-            setSchedule(groupSchedules[lastGroup] || initialSchedule);
+            setSchedule(groupSchedules ? groupSchedules[lastGroup] : '' || initialSchedule);
         }
     }, [groupSchedules]);
 
@@ -491,14 +491,16 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
                         </Tabs>
 
                         {/* Кнопка добавить занятие */}
-                        <Button
-                            variant="contained"
-                            color="primary"
-                            onClick={() => addLesson(activeDay)}
-                            sx={{ ml: 2, whiteSpace: "nowrap" }}
-                        >
-                            Добавить занятие
-                        </Button>
+                        {(isEditGroup && selectedGroup) &&
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={() => addLesson(activeDay)}
+                                sx={{ ml: 2, whiteSpace: "nowrap" }}
+                            >
+                                Добавить занятие
+                            </Button>
+                        }
                     </Box>
                 )}
 
