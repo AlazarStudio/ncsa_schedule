@@ -536,7 +536,7 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
             </Box>
 
             {/* Правая панель: выбор типа пары */}
-            {(isEditGroup && selectedGroup && activePairIndex != null) && (
+            {(isEditGroup && selectedGroup) && (
                 <Box width={'200px'} pl={'50px'} borderLeft={1} borderColor="grey.300" sx={{
                     display: 'flex',
                     flexDirection: 'column',

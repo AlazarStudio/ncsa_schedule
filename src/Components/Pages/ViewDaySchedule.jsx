@@ -3,7 +3,6 @@ import { Box, Grid, Typography } from "@mui/material";
 
 const ViewDaySchedule = ({ lessons }) => {
     const getName = (fields) => {
-        console.log(fields)
         return (`
             ${fields?.split(' ')[0]} ${fields?.split(' ')[1][0]}. ${fields?.split(' ')[2][0]}.
         `)

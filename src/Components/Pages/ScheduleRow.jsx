@@ -14,8 +14,36 @@ const ScheduleRow = memo(function ScheduleRow({ lesson, index, rooms, subjects, 
             alignItems: 'center',
             width: '100%',
         }}>
-            <div style={{ width: '50px', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRight: `1px solid ${isActive ? '#81212D' : '#e0e0e0'}` }}>{pairNumber}</div>
-            <div style={{ width: 'calc(100% - 50px)', display: 'flex', flexDirection: 'column', gap: '20px', padding: '20px' }}>
+            <div style={{ width: '80px', height: '100%', padding: '10px', borderRight: `1px solid ${isActive ? '#81212D' : '#e0e0e0'}` }}>
+                <TextField
+                    label="№"
+                    type="number"
+                    value={pairNumber}
+                    onChange={(e) => onChange(index, "pairNumber", e.target.value)}
+
+                    sx={{
+                        "& .MuiInputBase-root": {
+                            padding: "0px",
+                        },
+                        "& .MuiInputBase-input": {
+                            padding: "12px",
+                            fontSize: "14px",
+                        },
+                        "& .MuiInputLabel-root": {
+                            padding: "0px",
+                            fontSize: "14px",
+                            transform: "translate(14px, 12px) scale(1)",
+                        },
+                        "& .MuiInputLabel-shrink": {
+                            transform: "translate(14px, -6px) scale(0.75)",
+                        },
+                        "& .MuiAutocomplete-input": {
+                            padding: "12px !important",
+                        },
+                    }}
+                />
+            </div>
+            <div style={{ width: 'calc(100% - 80px)', display: 'flex', flexDirection: 'column', gap: '20px', padding: '20px' }}>
                 <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>{type || "Не указана"}</div>
                 <Autocomplete
                     options={subjects.map((subject) => subject.fullName)}
@@ -153,175 +181,6 @@ const ScheduleRow = memo(function ScheduleRow({ lesson, index, rooms, subjects, 
             </div>
         </div >
     );
-
-    {/* 
-        <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
-            <TextField
-                label="№"
-                type="number"
-                value={pairNumber}
-                onChange={(e) => onChange(index, "pairNumber", e.target.value)}
-                fullWidth
-                sx={{
-                    "& .MuiInputBase-root": {
-                        padding: "0px",
-                    },
-                    "& .MuiInputBase-input": {
-                        padding: "12px",
-                        fontSize: "14px",
-                    },
-                    "& .MuiInputLabel-root": {
-                        padding: "0px",
-                        fontSize: "14px",
-                        transform: "translate(14px, 12px) scale(1)",
-                    },
-                    "& .MuiInputLabel-shrink": {
-                        transform: "translate(14px, -6px) scale(0.75)",
-                    },
-                    "& .MuiAutocomplete-input": {
-                        padding: "12px !important",
-                    },
-                }}
-            />
-        </Grid>
-
-        <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
-            <Autocomplete
-                options={subjects.map((subject) => subject.fullName)}
-                value={fields[`${prefix}_subject`] || ""}
-                onChange={(e, newValue) =>
-                    onChange(index, "fields", { ...fields, [`${prefix}_subject`]: newValue })
-                }
-                renderInput={(params) => (
-                    <TextField
-                        {...params}
-                        label="Выберите предмет"
-                        variant="outlined"
-                        fullWidth
-                        sx={{
-                            "& .MuiInputBase-root": {
-                                padding: "0px",
-                            },
-                            "& .MuiInputBase-input": {
-                                padding: "12px",
-                                fontSize: "14px",
-                            },
-                            "& .MuiInputLabel-root": {
-                                padding: "0px",
-                                fontSize: "14px",
-                                transform: "translate(14px, 12px) scale(1)",
-                            },
-                            "& .MuiInputLabel-shrink": {
-                                transform: "translate(14px, -6px) scale(0.75)",
-                            },
-                            "& .MuiAutocomplete-input": {
-                                padding: "12px !important",
-                            },
-                        }}
-                    />
-                )}
-            />
-        </Grid>
-
-        <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
-            <Autocomplete
-                options={teachers.map((teacher) => teacher.fullName)}
-                value={fields[`${prefix}_teacher`] || ""}
-                onChange={(e, newValue) =>
-                    onChange(index, "fields", { ...fields, [`${prefix}_teacher`]: newValue })
-                }
-                renderInput={(params) => (
-                    <TextField {...params} label="Выберите преподавателя" variant="outlined" fullWidth
-                        sx={{
-                            "& .MuiInputBase-root": {
-                                padding: "0px",
-                            },
-                            "& .MuiInputBase-input": {
-                                padding: "12px",
-                                fontSize: "14px",
-                            },
-                            "& .MuiInputLabel-root": {
-                                padding: "0px",
-                                fontSize: "14px",
-                                transform: "translate(14px, 12px) scale(1)",
-                            },
-                            "& .MuiInputLabel-shrink": {
-                                transform: "translate(14px, -6px) scale(0.75)",
-                            },
-                            "& .MuiAutocomplete-input": {
-                                padding: "12px !important",
-                            },
-                        }} />
-                )}
-            />
-        </Grid>
-
-        <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
-            <Autocomplete
-                options={rooms.map((room) => room.fullName)}
-                value={fields[`${prefix}_room`] || ""}
-                onChange={(e, newValue) =>
-                    onChange(index, "fields", { ...fields, [`${prefix}_room`]: newValue })
-                }
-                renderInput={(params) => (
-                    <TextField {...params} label="Выберите аудиторию" variant="outlined" fullWidth
-                        sx={{
-                            "& .MuiInputBase-root": {
-                                padding: "0px",
-                            },
-                            "& .MuiInputBase-input": {
-                                padding: "12px",
-                                fontSize: "14px",
-                            },
-                            "& .MuiInputLabel-root": {
-                                padding: "0px",
-                                fontSize: "14px",
-                                transform: "translate(14px, 12px) scale(1)",
-                            },
-                            "& .MuiInputLabel-shrink": {
-                                transform: "translate(14px, -6px) scale(0.75)",
-                            },
-                            "& .MuiAutocomplete-input": {
-                                padding: "12px !important",
-                            },
-                        }} />
-                )}
-            />
-        </Grid>
-
-        <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
-            <Autocomplete
-                options={lessonTypes}
-                value={fields[`${prefix}_type`] || ""}
-                onChange={(e, newValue) =>
-                    onChange(index, "fields", { ...fields, [`${prefix}_type`]: newValue })
-                }
-                renderInput={(params) => (
-                    <TextField {...params} label="Выберите тип занятия" variant="outlined" fullWidth
-                        sx={{
-                            "& .MuiInputBase-root": {
-                                padding: "0px",
-                            },
-                            "& .MuiInputBase-input": {
-                                padding: "12px",
-                                fontSize: "14px",
-                            },
-                            "& .MuiInputLabel-root": {
-                                padding: "0px",
-                                fontSize: "14px",
-                                transform: "translate(14px, 12px) scale(1)",
-                            },
-                            "& .MuiInputLabel-shrink": {
-                                transform: "translate(14px, -6px) scale(0.75)",
-                            },
-                            "& .MuiAutocomplete-input": {
-                                padding: "12px !important",
-                            },
-                        }} />
-                )}
-            />
-        </Grid>  
-    */}
 
     // Генерация полей для разных типов пар
     const renderFields = () => {
@@ -490,6 +349,7 @@ const ScheduleRow = memo(function ScheduleRow({ lesson, index, rooms, subjects, 
 
     return (
         <Box
+            mb={2}
             border={1}
             borderRadius="12px"
             borderColor={isActive ? "primary.main" : "grey.300"}
@@ -497,7 +357,7 @@ const ScheduleRow = memo(function ScheduleRow({ lesson, index, rooms, subjects, 
         >
             {/* Номер пары и тип */}
             <Grid container spacing={2} alignItems="center">
-                <Grid item xs={1} sx={{ position: "absolute", top: 0, right: 15 }}>
+                <Grid item xs={1} sx={{ position: "absolute", top: -13, right: 0 }}>
                     <IconButton color="error" onClick={onDelete}>
                         <DeleteIcon />
                     </IconButton>
