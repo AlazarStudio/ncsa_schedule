@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography, List, ListItem, ListItemText, Divider } from "@mui/material";
-import { useConflicts } from "../Context/ConflictsContext";
 
 function Conflicts({ groupSchedules }) {
     const [conflicts, setConflicts] = useState([]);
-    const { recalculateConflicts } = useConflicts();
-
-    useEffect(() => {
-        recalculateConflicts(groupSchedules); // Пересчитываем конфликты
-    }, [groupSchedules, recalculateConflicts]);
 
     const daysInRussian = {
         monday: "Понедельник",
@@ -27,7 +21,6 @@ function Conflicts({ groupSchedules }) {
         room: "Аудитория",
     };
 
-    // Функция для извлечения полей из урока
     function extractLessonFields(lesson) {
         const { pairNumber, type, fields } = lesson;
         const result = [];
@@ -36,10 +29,10 @@ function Conflicts({ groupSchedules }) {
             if (fields[`${prefix}_subject`] || fields[`${prefix}_teacher`] || fields[`${prefix}_room`]) {
                 result.push({
                     pairNumber,
-                    subject: fields[`${prefix}_subject`],
-                    teacher: fields[`${prefix}_teacher`],
-                    room: fields[`${prefix}_room`],
-                    prefix,
+                    subject: fields[`${prefix}_subject`] || null,
+                    teacher: fields[`${prefix}_teacher`] || null,
+                    room: fields[`${prefix}_room`] || null,
+                    type: prefix, // Указываем тип (numerator, denominator и т.д.)
                 });
             }
         };
@@ -89,33 +82,95 @@ function Conflicts({ groupSchedules }) {
         return result;
     }
 
-    // Функция для нахождения конфликтующих полей
     const findConflictingFields = (fields1, fields2) => {
-        const fieldsToCheck = ["pairNumber", "subject", "teacher", "room"]; // Убрали "type"
+        const fieldsToCheck = ["subject", "teacher", "room"];
         const conflicts = [];
+
+        // Если числитель и знаменатель внутри одной пары, это не конфликт
+        if (
+            (fields1.type.includes("numerator") && fields2.type.includes("denominator")) ||
+            (fields1.type.includes("denominator") && fields2.type.includes("numerator"))
+        ) {
+            return [];
+        }
 
         fieldsToCheck.forEach((field) => {
             const value1 = fields1[field];
             const value2 = fields2[field];
 
+            // Сравниваем только одинаковые значения
             if (value1 && value2 && value1 === value2) {
                 conflicts.push({ field, value: value1 });
             }
         });
 
-        // Исключаем конфликты, где совпадает только "Номер пары"
-        if (conflicts.length === 1 && conflicts.some((c) => c.field === "pairNumber")) {
+        // Исключаем конфликты, если совпадает только предмет (но разные преподаватели или аудитории)
+        if (
+            conflicts.length === 1 &&
+            conflicts[0].field === "subject" &&
+            (fields1.teacher !== fields2.teacher || fields1.room !== fields2.room)
+        ) {
             return [];
         }
 
         return conflicts;
     };
 
-    // Логика поиска конфликтов
+    const formatPairNumbers = (details1, details2) => {
+        const getPairDescription = (details) => {
+            if (!details || !details.type) return `${details.pairNumber}`; // Безопасная проверка на наличие prefix
+
+            if (details.type.includes("numerator")) return `${details.pairNumber} (Числитель)`;
+            if (details.type.includes("denominator")) return `${details.pairNumber} (Знаменатель)`;
+            if (details.type.includes("subgroup1")) return `${details.pairNumber} (Подгруппа 1)`;
+            if (details.type.includes("subgroup2")) return `${details.pairNumber} (Подгруппа 2)`;
+
+            return `${details.pairNumber}`; // Возврат только номера пары, если prefix не распознан
+        };
+
+        return `${getPairDescription(details1)} и ${getPairDescription(details2)}`;
+    };
+
     useEffect(() => {
         const foundConflicts = [];
         const groups = Object.keys(groupSchedules);
 
+        groups.forEach((group) => {
+            const schedule = groupSchedules[group];
+
+            Object.keys(schedule).forEach((day) => {
+                const lessons = schedule[day] || [];
+
+                // Проверка внутри одной группы
+                lessons.forEach((lesson) => {
+                    const fields = extractLessonFields(lesson);
+
+                    for (let i = 0; i < fields.length; i++) {
+                        for (let j = i + 1; j < fields.length; j++) {
+                            const conflictingFields = findConflictingFields(fields[i], fields[j]);
+
+                            if (conflictingFields.length > 0) {
+                                const conflictId = `${group}-${day}-${fields[i].pairNumber}-${fields[j].pairNumber}-${conflictingFields.map((c) => c.field).join(",")}`;
+                                if (!foundConflicts.some((c) => c.id === conflictId)) {
+                                    foundConflicts.push({
+                                        id: conflictId,
+                                        group,
+                                        day: daysInRussian[day],
+                                        pairNumber1: fields[i].pairNumber,
+                                        pairNumber2: fields[j].pairNumber,
+                                        conflictingFields,
+                                        details1: fields[i],
+                                        details2: fields[j],
+                                    });
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+        });
+
+        // Проверка между группами
         for (let i = 0; i < groups.length; i++) {
             for (let j = i + 1; j < groups.length; j++) {
                 const group1 = groups[i];
@@ -129,6 +184,8 @@ function Conflicts({ groupSchedules }) {
 
                     lessons1.forEach((lesson1) => {
                         lessons2.forEach((lesson2) => {
+                            if (lesson1.pairNumber !== lesson2.pairNumber) return; // Только совпадающие пары
+
                             const fields1 = extractLessonFields(lesson1);
                             const fields2 = extractLessonFields(lesson2);
 
@@ -174,28 +231,24 @@ function Conflicts({ groupSchedules }) {
                         <React.Fragment key={index}>
                             <ListItem alignItems="flex-start">
                                 <ListItemText
-                                    primary={`Конфликт между группами ${conflict.group1} и ${conflict.group2}`}
+                                    primary={
+                                        conflict.group1 && conflict.group2
+                                            ? `Конфликт между группами ${conflict.group1} и ${conflict.group2}`
+                                            : `Конфликт в группе ${conflict.group || "неизвестно"}`
+                                    }
                                     secondary={
                                         <>
                                             <Typography variant="body2">
                                                 <strong>День:</strong> {conflict.day}
                                             </Typography>
                                             <Typography variant="body2">
-                                                <strong>Номер пары:</strong> {conflict.pairNumber1} (Группа {conflict.group1}), {conflict.pairNumber2} (Группа {conflict.group2})
+                                                <strong>Номер пары:</strong> {formatPairNumbers(conflict.details1, conflict.details2)}
                                             </Typography>
-                                            {/* <Typography variant="body2">
-                                                <strong>Совпадающие поля:</strong>
-                                                <ul>
-                                                    {conflict.conflictingFields.map((conflictField, idx) => (
-                                                        <li key={idx}>
-                                                            {fieldNamesInRussian[conflictField.field]}: {conflictField.value}
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            </Typography> */}
                                             <Typography variant="body2">
-                                                <strong>Описание:</strong> В группе {conflict.group1} и группе {conflict.group2} на {conflict.day} совпадают:
-                                                <ul style={{ paddingLeft: '40px' }}>
+                                                <strong>Описание:</strong> {conflict.group1 && conflict.group2
+                                                    ? `В группе ${conflict.group1} и группе ${conflict.group2} на ${conflict.day} совпадают:`
+                                                    : `В группе ${conflict.group || "неизвестно"} на ${conflict.day} совпадают:`}
+                                                <ul style={{ paddingLeft: "40px" }}>
                                                     {conflict.conflictingFields.map((conflictField, idx) => (
                                                         <li key={idx}>
                                                             {fieldNamesInRussian[conflictField.field]} — {conflictField.value}.

@@ -10,8 +10,6 @@ const ViewDaySchedule = ({ lessons }) => {
 
     // Структура для рендера пар на основе типа
     const renderLessonByType = (lesson) => {
-
-        console.log(lesson)
         const { type, pairNumber, fields } = lesson;
 
         const commonStyles = {
@@ -80,7 +78,7 @@ const ViewDaySchedule = ({ lessons }) => {
                                     <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Подгруппа 1</div>
                                     <div>{fields.subgroup1_subject || "Не указано"}</div>
                                     <div style={{ display: 'flex', gap: '20px' }}>
-                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_teacher || "Не указана"}</div>
+                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_teacher) || "Не указана"}</div>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_room || "Не указана"}</div>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_type || "Не указан"}</div>
                                     </div>
@@ -89,7 +87,7 @@ const ViewDaySchedule = ({ lessons }) => {
                                     <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Подгруппа 2</div>
                                     <div>{fields.subgroup2_subject || "Не указано"}</div>
                                     <div style={{ display: 'flex', gap: '20px' }}>
-                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_teacher || "Не указана"}</div>
+                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_teacher) || "Не указана"}</div>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_room || "Не указана"}</div>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_type || "Не указан"}</div>
                                     </div>
@@ -120,7 +118,7 @@ const ViewDaySchedule = ({ lessons }) => {
                                     <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Числитель</div>
                                     <div>{fields.numerator_subject || "Не указано"}</div>
                                     <div style={{ display: 'flex', gap: '20px' }}>
-                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.numerator_teacher || "Не указана"}</div>
+                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.numerator_teacher) || "Не указана"}</div>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.numerator_room || "Не указана"}</div>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.numerator_type || "Не указан"}</div>
                                     </div>
@@ -129,7 +127,7 @@ const ViewDaySchedule = ({ lessons }) => {
                                     <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Знаменатель</div>
                                     <div>{fields.denominator_subject || "Не указано"}</div>
                                     <div style={{ display: 'flex', gap: '20px' }}>
-                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.denominator_teacher || "Не указана"}</div>
+                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.denominator_teacher) || "Не указана"}</div>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.denominator_room || "Не указана"}</div>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.denominator_type || "Не указан"}</div>
                                     </div>
@@ -161,18 +159,18 @@ const ViewDaySchedule = ({ lessons }) => {
                                         <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Подгруппа 1 - Числитель</div>
                                         <div>{fields.subgroup1_numerator_subject || "Не указано"}</div>
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_teacher || "Не указана"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_numerator_teacher) || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_room || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_type || "Не указан"}</div>
                                         </div>
                                     </div>
                                     <div style={{ width: '100%', padding: '12px 25px', borderTop: "1px solid rgba(129, 33, 45, 0.8)", display: 'flex', flexDirection: 'column', gap: '20px' }}>
                                         <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Подгруппа 1 - Знаменатель</div>
-                                        <div>{fields.subgroup1_denominator_subject || "Не указано"}</div>
+                                        <div>{fields.subgroup2_denominator_subject || "Не указано"}</div>
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_denominator_teacher || "Не указана"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_denominator_room || "Не указана"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_denominator_type || "Не указан"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_denominator_teacher) || "Не указана"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_room || "Не указана"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_type || "Не указан"}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -180,7 +178,7 @@ const ViewDaySchedule = ({ lessons }) => {
                                     <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Подгруппа 2</div>
                                     <div>{fields.subgroup2_subject || "Не указано"}</div>
                                     <div style={{ display: 'flex', gap: '20px' }}>
-                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_teacher || "Не указана"}</div>
+                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_teacher) || "Не указана"}</div>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_room || "Не указана"}</div>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_type || "Не указан"}</div>
                                     </div>
@@ -211,7 +209,7 @@ const ViewDaySchedule = ({ lessons }) => {
                                     <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Подгруппа 1</div>
                                     <div>{fields.subgroup1_subject || "Не указано"}</div>
                                     <div style={{ display: 'flex', gap: '20px' }}>
-                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_teacher || "Не указана"}</div>
+                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_teacher) || "Не указана"}</div>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_room || "Не указана"}</div>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_type || "Не указан"}</div>
                                     </div>
@@ -220,18 +218,18 @@ const ViewDaySchedule = ({ lessons }) => {
                                 <div style={{ width: '50%', display: 'flex', borderLeft: "1px solid rgba(129, 33, 45, 0.8)", flexDirection: 'column' }}>
                                     <div style={{ width: '100%', padding: '12px 25px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
                                         <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Подгруппа 2 - Числитель</div>
-                                        <div>{fields.subgroup2_numerator_subject || "Не указано"}</div>
+                                        <div>{fields.subgroup1_numerator_subject || "Не указано"}</div>
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_numerator_teacher || "Не указана"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_numerator_room || "Не указана"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_numerator_type || "Не указан"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_numerator_teacher) || "Не указана"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_room || "Не указана"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_type || "Не указан"}</div>
                                         </div>
                                     </div>
                                     <div style={{ width: '100%', padding: '12px 25px', borderTop: "1px solid rgba(129, 33, 45, 0.8)", display: 'flex', flexDirection: 'column', gap: '20px' }}>
                                         <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Подгруппа 2 - Знаменатель</div>
                                         <div>{fields.subgroup2_denominator_subject || "Не указано"}</div>
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_teacher || "Не указана"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_denominator_teacher) || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_room || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_type || "Не указан"}</div>
                                         </div>
@@ -264,18 +262,18 @@ const ViewDaySchedule = ({ lessons }) => {
                                         <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Числитель - Подгруппа 1</div>
                                         <div>{fields.subgroup1_numerator_subject || "Не указано"}</div>
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_teacher || "Не указана"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_numerator_teacher) || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_room || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_type || "Не указан"}</div>
                                         </div>
                                     </div>
                                     <div style={{ width: '100%', padding: '12px 25px', display: 'flex', flexDirection: 'column', gap: '20px', borderLeft: "1px solid rgba(129, 33, 45, 0.8)" }}>
                                         <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Числитель - Подгруппа 2</div>
-                                        <div>{fields.subgroup1_numerator_subject || "Не указано"}</div>
+                                        <div>{fields.subgroup2_numerator_subject || "Не указано"}</div>
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_teacher || "Не указана"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_room || "Не указана"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_type || "Не указан"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_numerator_teacher) || "Не указана"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_numerator_room || "Не указана"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_numerator_type || "Не указан"}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -283,7 +281,7 @@ const ViewDaySchedule = ({ lessons }) => {
                                     <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Знаменатель</div>
                                     <div>{fields.denominator_subject || "Не указано"}</div>
                                     <div style={{ display: 'flex', gap: '20px' }}>
-                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.denominator_teacher || "Не указана"}</div>
+                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.denominator_teacher) || "Не указана"}</div>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.denominator_room || "Не указана"}</div>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.denominator_type || "Не указан"}</div>
                                     </div>
@@ -314,7 +312,7 @@ const ViewDaySchedule = ({ lessons }) => {
                                     <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Числитель</div>
                                     <div>{fields.numerator_subject || "Не указано"}</div>
                                     <div style={{ display: 'flex', gap: '20px' }}>
-                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.numerator_teacher || "Не указана"}</div>
+                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.numerator_teacher) || "Не указана"}</div>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.numerator_room || "Не указана"}</div>
                                         <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.numerator_type || "Не указан"}</div>
                                     </div>
@@ -324,7 +322,7 @@ const ViewDaySchedule = ({ lessons }) => {
                                         <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Знаменатель - Подгруппа 1</div>
                                         <div>{fields.subgroup1_denominator_subject || "Не указано"}</div>
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_denominator_teacher || "Не указана"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_denominator_teacher) || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_denominator_room || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_denominator_type || "Не указан"}</div>
                                         </div>
@@ -333,7 +331,7 @@ const ViewDaySchedule = ({ lessons }) => {
                                         <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Знаменатель - Подгруппа 2</div>
                                         <div>{fields.subgroup2_denominator_subject || "Не указано"}</div>
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_teacher || "Не указана"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_denominator_teacher) || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_room || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_type || "Не указан"}</div>
                                         </div>
@@ -366,7 +364,7 @@ const ViewDaySchedule = ({ lessons }) => {
                                         <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Числитель - Подгруппа 1</div>
                                         <div>{fields.subgroup1_numerator_subject || "Не указано"}</div>
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_teacher || "Не указана"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_numerator_) || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_room || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_type || "Не указан"}</div>
                                         </div>
@@ -375,7 +373,7 @@ const ViewDaySchedule = ({ lessons }) => {
                                         <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Числитель - Подгруппа 2</div>
                                         <div>{fields.subgroup2_numerator_subject || "Не указано"}</div>
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_numerator_teacher || "Не указана"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_numerator_teacher) || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_numerator_room || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_numerator_type || "Не указан"}</div>
                                         </div>
@@ -386,7 +384,7 @@ const ViewDaySchedule = ({ lessons }) => {
                                         <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Знаменатель - Подгруппа 1</div>
                                         <div>{fields.subgroup1_denominator_subject || "Не указано"}</div>
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_denominator_teacher || "Не указана"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_denominator_teacher) || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_denominator_room || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_denominator_type || "Не указан"}</div>
                                         </div>
@@ -395,7 +393,7 @@ const ViewDaySchedule = ({ lessons }) => {
                                         <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Знаменатель - Подгруппа 2</div>
                                         <div>{fields.subgroup2_denominator_subject || "Не указано"}</div>
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_teacher || "Не указана"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_denominator_teacher) || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_room || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_type || "Не указан"}</div>
                                         </div>

@@ -1,6 +1,7 @@
 export const subjects = [
     { id: 1, fullName: "Математика" },
     { id: 2, fullName: "Информатика" },
+    { id: 3, fullName: "Геометрия" },
 ];
 export const rooms = [
     { id: 1, fullName: "211", floor: "1" },
