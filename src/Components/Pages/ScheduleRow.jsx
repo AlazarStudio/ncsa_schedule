@@ -11,7 +11,6 @@ const ScheduleRow = memo(function ScheduleRow({ lesson, index, rooms, subjects, 
     const renderCommonFields = (prefix) => (
         <>
             <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
-                {/* <Typography variant="subtitle2" mb={1}>Номер</Typography> */}
                 <TextField
                     label="№"
                     type="number"
@@ -20,7 +19,7 @@ const ScheduleRow = memo(function ScheduleRow({ lesson, index, rooms, subjects, 
                     fullWidth
                     sx={{
                         "& .MuiInputBase-root": {
-                            padding: "0px", // Убираем дополнительные отступы
+                            padding: "0px",
                         },
                         "& .MuiInputBase-input": {
                             padding: "12px",
@@ -32,14 +31,15 @@ const ScheduleRow = memo(function ScheduleRow({ lesson, index, rooms, subjects, 
                             transform: "translate(14px, 12px) scale(1)",
                         },
                         "& .MuiInputLabel-shrink": {
-                            transform: "translate(14px, -6px) scale(0.75)", // Позиция для сжатого label
+                            transform: "translate(14px, -6px) scale(0.75)",
                         },
                         "& .MuiAutocomplete-input": {
-                            padding: "12px !important", // Убираем отступы вокруг текста
+                            padding: "12px !important",
                         },
                     }}
                 />
             </Grid>
+
             <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
                 <Autocomplete
                     options={subjects.map((subject) => subject.fullName)}
@@ -55,108 +55,7 @@ const ScheduleRow = memo(function ScheduleRow({ lesson, index, rooms, subjects, 
                             fullWidth
                             sx={{
                                 "& .MuiInputBase-root": {
-                                    padding: "0px", // Убираем дополнительные отступы
-                                },
-                                "& .MuiInputBase-input": {
-                                    padding: "12px",
-                                    fontSize: "14px",
-                                },
-                                "& .MuiInputLabel-root": {
                                     padding: "0px",
-                                    fontSize: "14px",
-                                    transform: "translate(14px, 12px) scale(1)",
-                                },
-                                "& .MuiInputLabel-shrink": {
-                                    transform: "translate(14px, -6px) scale(0.75)", // Позиция для сжатого label
-                                },
-                                "& .MuiAutocomplete-input": {
-                                    padding: "12px !important", // Убираем отступы вокруг текста
-                                },
-                            }}
-                        />
-                    )}
-                />
-            </Grid>
-
-            <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
-                {/* <Typography variant="subtitle2" mb={1}>Преподаватель</Typography> */}
-                <Autocomplete
-                    options={teachers.map((teacher) => teacher.fullName)}
-                    value={fields[`${prefix}_teacher`] || ""}
-                    onChange={(e, newValue) =>
-                        onChange(index, "fields", { ...fields, [`${prefix}_teacher`]: newValue })
-                    }
-                    renderInput={(params) => (
-                        <TextField {...params} label="Выберите преподавателя" variant="outlined" fullWidth
-                            sx={{
-                                "& .MuiInputBase-root": {
-                                    padding: "0px", // Убираем дополнительные отступы
-                                },
-                                "& .MuiInputBase-input": {
-                                    padding: "12px",
-                                    fontSize: "14px",
-                                },
-                                "& .MuiInputLabel-root": {
-                                    padding: "0px",
-                                    fontSize: "14px",
-                                    transform: "translate(14px, 12px) scale(1)",
-                                },
-                                "& .MuiInputLabel-shrink": {
-                                    transform: "translate(14px, -6px) scale(0.75)", // Позиция для сжатого label
-                                },
-                                "& .MuiAutocomplete-input": {
-                                    padding: "12px !important", // Убираем отступы вокруг текста
-                                },
-                            }} />
-                    )}
-                />
-            </Grid>
-            <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
-                {/* <Typography variant="subtitle2" mb={1}>Аудитория</Typography> */}
-                <Autocomplete
-                    options={rooms.map((room) => room.fullName)}
-                    value={fields[`${prefix}_room`] || ""}
-                    onChange={(e, newValue) =>
-                        onChange(index, "fields", { ...fields, [`${prefix}_room`]: newValue })
-                    }
-                    renderInput={(params) => (
-                        <TextField {...params} label="Выберите аудиторию" variant="outlined" fullWidth
-                            sx={{
-                                "& .MuiInputBase-root": {
-                                    padding: "0px", // Убираем дополнительные отступы
-                                },
-                                "& .MuiInputBase-input": {
-                                    padding: "12px",
-                                    fontSize: "14px",
-                                },
-                                "& .MuiInputLabel-root": {
-                                    padding: "0px",
-                                    fontSize: "14px",
-                                    transform: "translate(14px, 12px) scale(1)",
-                                },
-                                "& .MuiInputLabel-shrink": {
-                                    transform: "translate(14px, -6px) scale(0.75)", // Позиция для сжатого label
-                                },
-                                "& .MuiAutocomplete-input": {
-                                    padding: "12px !important", // Убираем отступы вокруг текста
-                                },
-                            }} />
-                    )}
-                />
-            </Grid>
-            <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
-                {/* <Typography variant="subtitle2" mb={1}>Тип занятия</Typography> */}
-                <Autocomplete
-                    options={lessonTypes}
-                    value={fields[`${prefix}_type`] || ""}
-                    onChange={(e, newValue) =>
-                        onChange(index, "fields", { ...fields, [`${prefix}_type`]: newValue })
-                    }
-                    renderInput={(params) => (
-                        <TextField {...params} label="Выберите тип занятия" variant="outlined" fullWidth
-                            sx={{
-                                "& .MuiInputBase-root": {
-                                    padding: "0px", // Убираем дополнительные отступы
                                 },
                                 "& .MuiInputBase-input": {
                                     padding: "12px",
@@ -171,7 +70,107 @@ const ScheduleRow = memo(function ScheduleRow({ lesson, index, rooms, subjects, 
                                     transform: "translate(14px, -6px) scale(0.75)",
                                 },
                                 "& .MuiAutocomplete-input": {
-                                    padding: "12px !important", // Убираем отступы вокруг текста
+                                    padding: "12px !important",
+                                },
+                            }}
+                        />
+                    )}
+                />
+            </Grid>
+
+            <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
+                <Autocomplete
+                    options={teachers.map((teacher) => teacher.fullName)}
+                    value={fields[`${prefix}_teacher`] || ""}
+                    onChange={(e, newValue) =>
+                        onChange(index, "fields", { ...fields, [`${prefix}_teacher`]: newValue })
+                    }
+                    renderInput={(params) => (
+                        <TextField {...params} label="Выберите преподавателя" variant="outlined" fullWidth
+                            sx={{
+                                "& .MuiInputBase-root": {
+                                    padding: "0px",
+                                },
+                                "& .MuiInputBase-input": {
+                                    padding: "12px",
+                                    fontSize: "14px",
+                                },
+                                "& .MuiInputLabel-root": {
+                                    padding: "0px",
+                                    fontSize: "14px",
+                                    transform: "translate(14px, 12px) scale(1)",
+                                },
+                                "& .MuiInputLabel-shrink": {
+                                    transform: "translate(14px, -6px) scale(0.75)",
+                                },
+                                "& .MuiAutocomplete-input": {
+                                    padding: "12px !important",
+                                },
+                            }} />
+                    )}
+                />
+            </Grid>
+
+            <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
+                <Autocomplete
+                    options={rooms.map((room) => room.fullName)}
+                    value={fields[`${prefix}_room`] || ""}
+                    onChange={(e, newValue) =>
+                        onChange(index, "fields", { ...fields, [`${prefix}_room`]: newValue })
+                    }
+                    renderInput={(params) => (
+                        <TextField {...params} label="Выберите аудиторию" variant="outlined" fullWidth
+                            sx={{
+                                "& .MuiInputBase-root": {
+                                    padding: "0px",
+                                },
+                                "& .MuiInputBase-input": {
+                                    padding: "12px",
+                                    fontSize: "14px",
+                                },
+                                "& .MuiInputLabel-root": {
+                                    padding: "0px",
+                                    fontSize: "14px",
+                                    transform: "translate(14px, 12px) scale(1)",
+                                },
+                                "& .MuiInputLabel-shrink": {
+                                    transform: "translate(14px, -6px) scale(0.75)",
+                                },
+                                "& .MuiAutocomplete-input": {
+                                    padding: "12px !important",
+                                },
+                            }} />
+                    )}
+                />
+            </Grid>
+
+            <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
+                <Autocomplete
+                    options={lessonTypes}
+                    value={fields[`${prefix}_type`] || ""}
+                    onChange={(e, newValue) =>
+                        onChange(index, "fields", { ...fields, [`${prefix}_type`]: newValue })
+                    }
+                    renderInput={(params) => (
+                        <TextField {...params} label="Выберите тип занятия" variant="outlined" fullWidth
+                            sx={{
+                                "& .MuiInputBase-root": {
+                                    padding: "0px",
+                                },
+                                "& .MuiInputBase-input": {
+                                    padding: "12px",
+                                    fontSize: "14px",
+                                },
+                                "& .MuiInputLabel-root": {
+                                    padding: "0px",
+                                    fontSize: "14px",
+                                    transform: "translate(14px, 12px) scale(1)",
+                                },
+                                "& .MuiInputLabel-shrink": {
+                                    transform: "translate(14px, -6px) scale(0.75)",
+                                },
+                                "& .MuiAutocomplete-input": {
+                                    padding: "12px !important",
                                 },
                             }} />
                     )}
