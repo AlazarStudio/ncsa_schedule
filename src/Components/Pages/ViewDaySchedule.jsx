@@ -40,6 +40,7 @@ const ViewDaySchedule = ({ lessons }) => {
                         }}>
                             <div style={{ width: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{pairNumber}</div>
                             <div style={{ borderLeft: "1px solid rgba(129, 33, 45, 0.8)", padding: '12px 25px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                                <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Общая</div>
                                 <div style={{
                                     width: '100%',
                                     height: '100%',

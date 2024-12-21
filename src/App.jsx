@@ -19,7 +19,7 @@ import Subjects from "./Components/Pages/Subjects";
 function App() {
   const [groupSchedules, setGroupSchedules] = useState();
 
-  console.log(groupSchedules)
+  // console.log(groupSchedules)
 
   return (
     <Routes>

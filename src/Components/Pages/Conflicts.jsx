@@ -133,7 +133,7 @@ function Conflicts({ groupSchedules }) {
 
     useEffect(() => {
         const foundConflicts = [];
-        const groups = Object.keys(groupSchedules);
+        const groups = Object.keys(groupSchedules ?? {});
 
         groups.forEach((group) => {
             const schedule = groupSchedules[group];
