@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Tabs, Tab, Select, MenuItem, Typography, Grid, Button, Autocomplete, TextField } from "@mui/material";
 import DaySchedule from "./DaySchedule";
 import { rooms, teachers, groups, subjects } from "../../data";
-import { useConflicts } from "../Context/ConflictsContext";
+import ViewDaySchedule from "./ViewDaySchedule";
 
 const initialSchedule = {
     monday: [],
@@ -330,17 +330,17 @@ const pairTypes = [
 ];
 
 function Schedule({ groupSchedules, setGroupSchedules }) {
-    const { recalculateConflicts } = useConflicts();
-
-    // Пересчитываем конфликты при изменении groupSchedules
-    useEffect(() => {
-        recalculateConflicts(groupSchedules);
-    }, [groupSchedules, recalculateConflicts]);
-
     const [activeDay, setActiveDay] = useState("monday");
     const [selectedGroup, setSelectedGroup] = useState("");
     const [schedule, setSchedule] = useState(initialSchedule);
     const [activePairIndex, setActivePairIndex] = useState(null);
+
+
+    const [isEditGroup, setIsEditGroup] = useState(false);
+
+    const changeEditGroup = () => {
+        setIsEditGroup(!isEditGroup)
+    }
 
     useEffect(() => {
         const lastGroup = localStorage.getItem("lastSelectedGroup");
@@ -404,7 +404,11 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
         if (activePairIndex !== null && schedule[activeDay].length <= activePairIndex) {
             setActivePairIndex(null);
         }
-    }, [schedule, activeDay, activePairIndex]);
+
+        if (!isEditGroup) {
+            setActivePairIndex(null);
+        }
+    }, [schedule, activeDay, activePairIndex, isEditGroup]);
 
     // Сохранение расписания для текущей группы
     const saveSchedule = () => {
@@ -427,12 +431,24 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
         localStorage.setItem("lastSelectedGroup", group); // Сохраняем в localStorage
     };
 
+
     return (
         <Box p={2} sx={{ display: 'flex', gap: '50px' }}>
             {/* Левая панель: расписание */}
             <Box flex={3} >
                 {/* Заголовок */}
-                <Typography variant="h5" mb={2}>Расписание</Typography>
+                <Typography variant="h5" mb={2} sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <Box>Расписание</Box>
+
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={changeEditGroup}
+                        sx={{ whiteSpace: "nowrap" }}
+                    >
+                        {!isEditGroup ? 'Редактировать' : 'Посмотреть'}
+                    </Button>
+                </Typography>
 
                 {/* Выбор группы */}
                 <Box mb={2}>
@@ -487,28 +503,38 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
                 )}
 
                 {/* Расписание для выбранного дня */}
-                {selectedGroup && (
-                    <>
-                        <Box mt={2}>
-                            <DaySchedule
-                                day={activeDay}
-                                lessons={schedule[activeDay]}
-                                subjects={subjects}
-                                rooms={rooms}
-                                teachers={teachers}
-                                onAddLesson={() => addLesson(activeDay)}
-                                onUpdateLesson={updateLesson}
-                                activePairIndex={activePairIndex}
-                                onPairSelect={setActivePairIndex}
-                                onDeleteLesson={deleteLesson}
-                            />
-                        </Box>
-                    </>
+                {(isEditGroup && selectedGroup) && (
+                    <Box mt={2}>
+                        <DaySchedule
+                            day={activeDay}
+                            lessons={schedule[activeDay]}
+                            subjects={subjects}
+                            rooms={rooms}
+                            teachers={teachers}
+                            onAddLesson={() => addLesson(activeDay)}
+                            onUpdateLesson={updateLesson}
+                            activePairIndex={activePairIndex}
+                            onPairSelect={setActivePairIndex}
+                            onDeleteLesson={deleteLesson}
+                        />
+                    </Box>
+                )}
+
+                {(!isEditGroup && selectedGroup) && (
+                    <Box mt={2}>
+                        {schedule[activeDay] && schedule[activeDay].length > 0 ? (
+                            <ViewDaySchedule lessons={schedule[activeDay]} />
+                        ) : (
+                            <Typography color="textSecondary">
+                                На этот день занятий нет.
+                            </Typography>
+                        )}
+                    </Box>
                 )}
             </Box>
 
             {/* Правая панель: выбор типа пары */}
-            {(selectedGroup && activePairIndex != null) && (
+            {(isEditGroup && selectedGroup && activePairIndex != null) && (
                 <Box width={'200px'} pl={'50px'} borderLeft={1} borderColor="grey.300" sx={{
                     display: 'flex',
                     flexDirection: 'column',

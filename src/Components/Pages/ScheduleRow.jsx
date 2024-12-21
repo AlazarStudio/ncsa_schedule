@@ -369,7 +369,7 @@ const ScheduleRow = memo(function ScheduleRow({ lesson, index, rooms, subjects, 
     return (
         <Box
             p={2}
-            mb={2}
+            mb={6}
             mr={1}
             border={2}
             borderRadius={1}

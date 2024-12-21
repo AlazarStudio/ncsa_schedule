@@ -35,16 +35,8 @@ const Header = () => {
 
                 {/* Кнопки навигации */}
                 <Box>
-                    <StyledLink to="/view-schedule">
-                        {isActive('/view-schedule') || isActive('/') ? (
-                            <ActiveButton color="inherit">Просмотр расписания</ActiveButton>
-                        ) : (
-                            <Button color="inherit">Просмотр расписания</Button>
-                        )}
-                    </StyledLink>
-
                     <StyledLink to="/schedule">
-                        {isActive('/schedule') ? (
+                        {isActive('/schedule') || isActive('/') ? (
                             <ActiveButton color="inherit">Расписание</ActiveButton>
                         ) : (
                             <Button color="inherit">Расписание</Button>

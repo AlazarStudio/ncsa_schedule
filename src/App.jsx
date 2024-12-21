@@ -13,7 +13,6 @@ import Groups from "./Components/Pages/Groups";
 import Rooms from "./Components/Pages/Rooms";
 import Conflicts from "./Components/Pages/Conflicts";
 
-import ViewSchedule from "./Components/Pages/ViewSchedule";
 import Subjects from "./Components/Pages/Subjects";
 
 
@@ -85,10 +84,9 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         {/* Главная страница */}
-        <Route index element={<ViewSchedule groupSchedules={groupSchedules} setGroupSchedules={setGroupSchedules} />} />
+        <Route index element={<Schedule groupSchedules={groupSchedules} setGroupSchedules={setGroupSchedules} />} />
 
         {/* Остальные маршруты */}
-        <Route path="/view-schedule" element={<ViewSchedule groupSchedules={groupSchedules} />} />
         <Route path="/schedule" element={<Schedule groupSchedules={groupSchedules} setGroupSchedules={setGroupSchedules} />} />
         <Route path="/students" element={<Students />} />
         <Route path="/teachers" element={<Teachers />} />
