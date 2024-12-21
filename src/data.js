@@ -1,3 +1,7 @@
+export const subjects = [
+    { id: 1, fullName: "Математика" },
+    { id: 2, fullName: "Информатика" },
+];
 export const rooms = [
     { id: 1, fullName: "211", floor: "1" },
     { id: 2, fullName: "222", floor: "2" },

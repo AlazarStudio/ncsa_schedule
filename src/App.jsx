@@ -15,12 +15,12 @@ import Conflicts from "./Components/Pages/Conflicts";
 
 import { ConflictsProvider } from "./Components/Context/ConflictsContext";
 import ViewSchedule from "./Components/Pages/ViewSchedule";
+import Subjects from "./Components/Pages/Subjects";
 
 
 function App() {
   const [groupSchedules, setGroupSchedules] = useState({});
 
-  console.log(groupSchedules)
   return (
     <ConflictsProvider>
       <Routes>
@@ -29,12 +29,13 @@ function App() {
           <Route index element={<ViewSchedule groupSchedules={groupSchedules} setGroupSchedules={setGroupSchedules} />} />
 
           {/* Остальные маршруты */}
-          <Route path="/schedule" element={<Schedule groupSchedules={groupSchedules} setGroupSchedules={setGroupSchedules} />} />
           <Route path="/view-schedule" element={<ViewSchedule groupSchedules={groupSchedules} />} />
+          <Route path="/schedule" element={<Schedule groupSchedules={groupSchedules} setGroupSchedules={setGroupSchedules} />} />
           <Route path="/students" element={<Students />} />
           <Route path="/teachers" element={<Teachers />} />
           <Route path="/groups" element={<Groups />} />
           <Route path="/rooms" element={<Rooms />} />
+          <Route path="/subjects" element={<Subjects />} />
           <Route path="/conflicts" element={<Conflicts groupSchedules={groupSchedules} />} />
 
           {/* Страница "не найдено" */}

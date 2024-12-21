@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Button } from "@mui/material";
 import ScheduleRow from "./ScheduleRow";
 
-function DaySchedule({ day, lessons, rooms, teachers, onAddLesson, onUpdateLesson, activePairIndex, onPairSelect, onDeleteLesson }) {
+function DaySchedule({ day, lessons, rooms, teachers, subjects, onAddLesson, onUpdateLesson, activePairIndex, onPairSelect, onDeleteLesson }) {
     return (
         <Box sx={{
             maxHeight: '625px',
@@ -16,6 +16,7 @@ function DaySchedule({ day, lessons, rooms, teachers, onAddLesson, onUpdateLesso
                         lesson={lesson}
                         rooms={rooms}
                         teachers={teachers}
+                        subjects={subjects}
                         onChange={onUpdateLesson} // Передаём функцию обновления
                         isActive={activePairIndex === index}
                         onDelete={() => onDeleteLesson(index)}

@@ -4,7 +4,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 const lessonTypes = ["Лекционное занятие", "Практическое занятие", "Лабораторная работа"];
 
-const ScheduleRow = memo(function ScheduleRow({ lesson, index, rooms, teachers, onChange, isActive, onDelete }) {
+const ScheduleRow = memo(function ScheduleRow({ lesson, index, rooms, subjects, teachers, onChange, isActive, onDelete }) {
     const { pairNumber, type, fields } = lesson;
 
     // Генерация общего набора полей
@@ -41,34 +41,43 @@ const ScheduleRow = memo(function ScheduleRow({ lesson, index, rooms, teachers, 
                 />
             </Grid>
             <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
-                {/* <Typography variant="subtitle2" mb={1}>Название</Typography> */}
-                <TextField
-                    label={`Название занятия`}
+                <Autocomplete
+                    options={subjects.map((subject) => subject.fullName)}
                     value={fields[`${prefix}_subject`] || ""}
-                    onChange={(e) => onChange(index, "fields", { ...fields, [`${prefix}_subject`]: e.target.value })}
-                    fullWidth
-                    sx={{
-                        "& .MuiInputBase-root": {
-                            padding: "0px", // Убираем дополнительные отступы
-                        },
-                        "& .MuiInputBase-input": {
-                            padding: "12px",
-                            fontSize: "14px",
-                        },
-                        "& .MuiInputLabel-root": {
-                            padding: "0px",
-                            fontSize: "14px",
-                            transform: "translate(14px, 12px) scale(1)",
-                        },
-                        "& .MuiInputLabel-shrink": {
-                            transform: "translate(14px, -6px) scale(0.75)", // Позиция для сжатого label
-                        },
-                        "& .MuiAutocomplete-input": {
-                            padding: "12px !important", // Убираем отступы вокруг текста
-                        },
-                    }}
+                    onChange={(e, newValue) =>
+                        onChange(index, "fields", { ...fields, [`${prefix}_subject`]: newValue })
+                    }
+                    renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            label="Выберите предмет"
+                            variant="outlined"
+                            fullWidth
+                            sx={{
+                                "& .MuiInputBase-root": {
+                                    padding: "0px", // Убираем дополнительные отступы
+                                },
+                                "& .MuiInputBase-input": {
+                                    padding: "12px",
+                                    fontSize: "14px",
+                                },
+                                "& .MuiInputLabel-root": {
+                                    padding: "0px",
+                                    fontSize: "14px",
+                                    transform: "translate(14px, 12px) scale(1)",
+                                },
+                                "& .MuiInputLabel-shrink": {
+                                    transform: "translate(14px, -6px) scale(0.75)", // Позиция для сжатого label
+                                },
+                                "& .MuiAutocomplete-input": {
+                                    padding: "12px !important", // Убираем отступы вокруг текста
+                                },
+                            }}
+                        />
+                    )}
                 />
             </Grid>
+
             <Grid item sx={{ width: '100%', paddingTop: '10px !important' }}>
                 {/* <Typography variant="subtitle2" mb={1}>Преподаватель</Typography> */}
                 <Autocomplete

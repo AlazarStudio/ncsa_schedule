@@ -77,6 +77,14 @@ const Header = () => {
                         )}
                     </StyledLink>
 
+                    <StyledLink to="/subjects">
+                        {isActive('/subjects') ? (
+                            <ActiveButton color="inherit">Предметы</ActiveButton>
+                        ) : (
+                            <Button color="inherit">Предметы</Button>
+                        )}
+                    </StyledLink>
+
                     <StyledLink to="/rooms">
                         {isActive('/rooms') ? (
                             <ActiveButton color="inherit">Аудитории</ActiveButton>

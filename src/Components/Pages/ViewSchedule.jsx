@@ -26,7 +26,7 @@ const ViewSchedule = ({ groupSchedules }) => {
             <Box mb={2}>
                 <Autocomplete
                     value={selectedGroup}
-                    onChange={(event, newValue) => setSelectedGroup(newValue)}
+                    onChange={(event, newValue) => { setSelectedGroup(newValue); localStorage.setItem("lastSelectedGroup", newValue); }}
                     options={groups.map((group) => group.fullName)}
                     renderInput={(params) => (
                         <TextField {...params} label="Выберите группу" variant="outlined" />

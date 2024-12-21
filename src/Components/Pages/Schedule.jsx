@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Tabs, Tab, Select, MenuItem, Typography, Grid, Button, Autocomplete, TextField } from "@mui/material";
 import DaySchedule from "./DaySchedule";
-import { rooms, teachers, groups } from "../../data";
+import { rooms, teachers, groups, subjects } from "../../data";
 import { useConflicts } from "../Context/ConflictsContext";
 
 const initialSchedule = {
@@ -493,6 +493,7 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
                             <DaySchedule
                                 day={activeDay}
                                 lessons={schedule[activeDay]}
+                                subjects={subjects}
                                 rooms={rooms}
                                 teachers={teachers}
                                 onAddLesson={() => addLesson(activeDay)}
