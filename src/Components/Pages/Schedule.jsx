@@ -10,7 +10,8 @@ const initialSchedule = {
     wednesday: [],
     thursday: [],
     friday: [],
-    saturday: []
+    saturday: [],
+    sunday: [],
 };
 
 const pairTypes = [
@@ -329,8 +330,11 @@ const pairTypes = [
     },
 ];
 
+const today = new Date();
+const dayOfWeek = today.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
+
 function Schedule({ groupSchedules, setGroupSchedules }) {
-    const [activeDay, setActiveDay] = useState("monday");
+    const [activeDay, setActiveDay] = useState(dayOfWeek);
     const [selectedGroup, setSelectedGroup] = useState("");
     const [schedule, setSchedule] = useState(initialSchedule);
     const [activePairIndex, setActivePairIndex] = useState(null);
@@ -342,13 +346,13 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
         setIsEditGroup(!isEditGroup)
     }
 
-    useEffect(() => {
-        const lastGroup = localStorage.getItem("lastSelectedGroup");
-        if (lastGroup) {
-            setSelectedGroup(lastGroup);
-            setSchedule(groupSchedules ? groupSchedules[lastGroup] : '' || initialSchedule);
-        }
-    }, [groupSchedules]);
+    // useEffect(() => {
+    //     const lastGroup = localStorage.getItem("lastSelectedGroup");
+    //     if (lastGroup) {
+    //         setSelectedGroup(lastGroup);
+    //         setSchedule(groupSchedules ? groupSchedules[lastGroup] : '' || initialSchedule);
+    //     }
+    // }, [groupSchedules]);
 
     // Добавление новой пары
     const addLesson = (day) => {
@@ -425,29 +429,43 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
 
     // Загрузка расписания при выборе группы
     const handleGroupChange = (group) => {
+        // Проверка на undefined
+        if (!groupSchedules || !groupSchedules[group]) {
+            setSchedule(initialSchedule);
+        } else {
+            setSchedule(groupSchedules[group]);
+        }
+
         setSelectedGroup(group);
-        setSchedule(groupSchedules[group] || initialSchedule); // Загружаем расписание, если оно есть
-        setActivePairIndex(null); // Сбрасываем выбранную пару
-        localStorage.setItem("lastSelectedGroup", group); // Сохраняем в localStorage
+        setActivePairIndex(null);
     };
 
+
+    function getWeekNumber(date = new Date()) {
+        const startOfYear = new Date(date.getFullYear(), 0, 1);
+        const diffInDays = Math.floor((date - startOfYear) / (1000 * 60 * 60 * 24));
+        const weekNumber = Math.ceil((diffInDays + startOfYear.getDay() + 1) / 7);
+        return weekNumber % 2 === 0 ? 'Знаменатель' : 'Числитель';
+    }
 
     return (
         <Box p={2} sx={{ display: 'flex', gap: '50px' }}>
             {/* Левая панель: расписание */}
             <Box flex={3} >
                 {/* Заголовок */}
-                <Typography variant="h5" mb={2} sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <Box>Расписание</Box>
-
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={changeEditGroup}
-                        sx={{ whiteSpace: "nowrap" }}
-                    >
-                        {!isEditGroup ? 'Редактировать' : 'Посмотреть'}
-                    </Button>
+                <Typography variant="h5" mb={2}>
+                    <Box sx={{ display: 'flex', gap: '40px', alignItems: 'center', justifyContent: 'space-between', width: '100%', }}>
+                        <div>Расписание</div>
+                        <div style={{ fontSize: '16px', display: 'flex', gap: '10px', alignItems: 'center' }}>Текущая неделя: <div style={{ color: '#81212D', fontWeight: '600', ml: '10px' }}>{getWeekNumber()}</div></div>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={changeEditGroup}
+                            sx={{ whiteSpace: "nowrap" }}
+                        >
+                            {!isEditGroup ? 'Редактировать' : 'Посмотреть'}
+                        </Button>
+                    </Box>
                 </Typography>
 
                 {/* Выбор группы */}
@@ -488,6 +506,7 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
                             <Tab label="Четверг" value="thursday" />
                             <Tab label="Пятница" value="friday" />
                             <Tab label="Суббота" value="saturday" />
+                            <Tab label="Воскресенье" value="sunday" />
                         </Tabs>
 
                         {/* Кнопка добавить занятие */}
