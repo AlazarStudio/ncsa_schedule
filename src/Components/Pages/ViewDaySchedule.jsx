@@ -365,7 +365,7 @@ const ViewDaySchedule = ({ lessons }) => {
                                         <div style={{ fontSize: '12px', color: 'rgba(0, 0, 0, 0.8)' }}>Числитель - Подгруппа 1</div>
                                         <div>{fields.subgroup1_numerator_subject || "Не указано"}</div>
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_numerator_) || "Не указана"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_numerator_teacher) || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_room || "Не указана"}</div>
                                             <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_type || "Не указан"}</div>
                                         </div>
