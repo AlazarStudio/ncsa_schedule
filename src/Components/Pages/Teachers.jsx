@@ -1,17 +1,17 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import { DELETE_fetchRequest, GET_fetchRequest, POST_fetchRequest, PUT_fetchRequest } from "../../data";
+
 import PageHeader from "../Blocks/PageHeader";
 import SearchBar from "../Blocks/SearchBar";
 import DataTable from "../Blocks/DataTable";
 import ActionPanel from "../Blocks/ActionPanel";
 import StudentModal from "../Blocks/StudentModal";
 import DeleteConfirmationDialog from "../Blocks/DeleteConfirmationDialog";
-import { teachers } from "../../data";
-
-const dummyData = teachers;
 
 const Teachers = () => {
-    const [data, setData] = useState([...dummyData]);
-    const [filteredData, setFilteredData] = useState(data)
+    const [teachers, setTeachers] = useState([]);
+    const [data, setData] = useState([]);
+    const [filteredData, setFilteredData] = useState([])
     const [selectedRows, setSelectedRows] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [modalOpen, setModalOpen] = useState(false);
@@ -22,6 +22,15 @@ const Teachers = () => {
 
     const itemsPerPage = 11;
 
+    useEffect(() => {
+        GET_fetchRequest('teachers', setTeachers);
+    }, []);
+
+    useEffect(() => {
+        setData(teachers);
+        setFilteredData(teachers);
+    }, [teachers]);
+
     const handleSelectRow = (id) => {
         setSelectedRows((prev) =>
             prev.includes(id) ? prev.filter((rowId) => rowId !== id) : [...prev, id]
@@ -29,6 +38,7 @@ const Teachers = () => {
     };
 
     const handleDelete = () => {
+        selectedRows.map((id) => DELETE_fetchRequest(id, 'teachers'))
         const updatedData = data.filter((row) => !selectedRows.includes(row.id));
         setData(updatedData);
 
@@ -57,19 +67,28 @@ const Teachers = () => {
     };
 
     const handleSaveStudent = (student) => {
-        if (student.id) {
-            setData((prev) =>
-                prev.map((item) => (item.id === student.id ? student : item))
-            );
-            setFilteredData((prev) =>
-                prev.map((item) => (item.id === student.id ? student : item))
-            );
-        } else {
-            const newStudent = { ...student, id: data.length + 1 };
-            setData((prev) => [...prev, newStudent]);
-            setFilteredData((prev) => [...prev, newStudent]);
+        let data
+
+        student.id ?
+            data = PUT_fetchRequest(student, 'teachers')
+            :
+            data = POST_fetchRequest(student, 'teachers')
+
+        if (data) {
+            if (student.id) {
+                setData((prev) =>
+                    prev.map((item) => (item.id === student.id ? student : item))
+                );
+                setFilteredData((prev) =>
+                    prev.map((item) => (item.id === student.id ? student : item))
+                );
+            } else {
+                const newStudent = { ...student, id: data.length + 1 };
+                setData((prev) => [...prev, newStudent]);
+                setFilteredData((prev) => [...prev, newStudent]);
+            }
+            setModalOpen(false);
         }
-        setModalOpen(false);
     };
 
     const handleSearch = (query) => {

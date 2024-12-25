@@ -25,12 +25,13 @@ function App() {
                 <Route index element={<Schedule groupSchedules={groupSchedules} setGroupSchedules={setGroupSchedules} />} />
 
                 {/* Остальные маршруты */}
-                <Route path="/schedule" element={<Schedule groupSchedules={groupSchedules} setGroupSchedules={setGroupSchedules} />} />
-                <Route path="/students" element={<Students />} />
-                <Route path="/teachers" element={<Teachers />} />
-                <Route path="/groups" element={<Groups />} />
                 <Route path="/rooms" element={<Rooms />} />
                 <Route path="/subjects" element={<Subjects />} />
+                <Route path="/groups" element={<Groups />} />
+                <Route path="/teachers" element={<Teachers />} />
+                <Route path="/students" element={<Students />} />
+
+                <Route path="/schedule" element={<Schedule groupSchedules={groupSchedules} setGroupSchedules={setGroupSchedules} />} />
                 <Route path="/conflicts" element={<Conflicts groupSchedules={groupSchedules} />} />
 
                 {/* Страница "не найдено" */}
