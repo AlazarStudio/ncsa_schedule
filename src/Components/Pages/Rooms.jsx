@@ -1,17 +1,16 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import PageHeader from "../Blocks/PageHeader";
 import SearchBar from "../Blocks/SearchBar";
 import DataTable from "../Blocks/DataTable";
 import ActionPanel from "../Blocks/ActionPanel";
 import StudentModal from "../Blocks/StudentModal";
 import DeleteConfirmationDialog from "../Blocks/DeleteConfirmationDialog";
-import { rooms } from "../../data";
-
-const dummyData = rooms;
+import { GET_fetchRequest, POST_fetchRequest } from "../../data";
 
 const Rooms = () => {
-    const [data, setData] = useState([...dummyData]);
-    const [filteredData, setFilteredData] = useState(data)
+    const [rooms, setRooms] = useState([]);
+    const [data, setData] = useState([]);
+    const [filteredData, setFilteredData] = useState([])
     const [selectedRows, setSelectedRows] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [modalOpen, setModalOpen] = useState(false);
@@ -21,6 +20,15 @@ const Rooms = () => {
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
     const itemsPerPage = 11;
+
+    useEffect(() => {
+        GET_fetchRequest('rooms', setRooms);
+    }, []);
+
+    useEffect(() => {
+        setData(rooms);
+        setFilteredData(rooms);
+    }, [rooms]);
 
     const handleSelectRow = (id) => {
         setSelectedRows((prev) =>
@@ -57,19 +65,23 @@ const Rooms = () => {
     };
 
     const handleSaveStudent = (student) => {
-        if (student.id) {
-            setData((prev) =>
-                prev.map((item) => (item.id === student.id ? student : item))
-            );
-            setFilteredData((prev) =>
-                prev.map((item) => (item.id === student.id ? student : item))
-            );
-        } else {
-            const newStudent = { ...student, id: data.length + 1 };
-            setData((prev) => [...prev, newStudent]);
-            setFilteredData((prev) => [...prev, newStudent]);
+        let data = POST_fetchRequest(student, 'rooms')
+
+        if (data) {
+            if (student.id) {
+                setData((prev) =>
+                    prev.map((item) => (item.id === student.id ? student : item))
+                );
+                setFilteredData((prev) =>
+                    prev.map((item) => (item.id === student.id ? student : item))
+                );
+            } else {
+                const newStudent = { ...student, id: data.length + 1 };
+                setData((prev) => [...prev, newStudent]);
+                setFilteredData((prev) => [...prev, newStudent]);
+            }
+            setModalOpen(false);
         }
-        setModalOpen(false);
     };
 
     const handleSearch = (query) => {
@@ -153,6 +165,7 @@ const Rooms = () => {
                 onClose={() => setModalOpen(false)}
                 onSave={handleSaveStudent}
                 item={editingStudent}
+                type={'rooms'}
             />
             <DeleteConfirmationDialog
                 open={deleteDialogOpen}

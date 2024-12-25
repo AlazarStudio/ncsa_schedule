@@ -1,8 +1,32 @@
+import axios from "axios";
+
+export const GET_fetchRequest = async (name, setRequest) => {
+    try {
+        const response = await axios.get(`http://localhost:5000/api/${name}`);
+        setRequest(response.data);
+    } catch (err) {
+        console.log(err.message);
+    }
+};
+
+export const POST_fetchRequest = async (addInfo, name) => {
+    try {
+        const response = await axios.post(
+            `http://localhost:5000/api/${name}`,
+            addInfo,
+        );
+        return response.data;
+    } catch (err) {
+        setError(err.message); // Обработать ошибку
+    }
+};
+
 export const subjects = [
     { id: 1, fullName: "Математика" },
     { id: 2, fullName: "Информатика" },
     { id: 3, fullName: "Геометрия" },
 ];
+
 export const rooms = [
     { id: 1, fullName: "211", floor: "1" },
     { id: 2, fullName: "222", floor: "2" },

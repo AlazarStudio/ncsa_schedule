@@ -20,7 +20,7 @@ const modalStyle = {
     borderRadius: 2,
 };
 
-const StudentModal = ({ open, onClose, onSave, item, columns }) => {
+const StudentModal = ({ open, onClose, onSave, item, columns, type }) => {
     const [formData, setFormData] = useState({});
 
     // Инициализация формы
@@ -40,7 +40,7 @@ const StudentModal = ({ open, onClose, onSave, item, columns }) => {
     // Обработка изменений в полях формы
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
+        setFormData((prev) => ({ ...prev, [name]: value, type: type }));
     };
 
     // Сохранение формы
