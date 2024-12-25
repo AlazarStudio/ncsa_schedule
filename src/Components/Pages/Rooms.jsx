@@ -5,7 +5,7 @@ import DataTable from "../Blocks/DataTable";
 import ActionPanel from "../Blocks/ActionPanel";
 import StudentModal from "../Blocks/StudentModal";
 import DeleteConfirmationDialog from "../Blocks/DeleteConfirmationDialog";
-import { GET_fetchRequest, POST_fetchRequest } from "../../data";
+import { DELETE_fetchRequest, GET_fetchRequest, POST_fetchRequest, PUT_fetchRequest } from "../../data";
 
 const Rooms = () => {
     const [rooms, setRooms] = useState([]);
@@ -37,6 +37,8 @@ const Rooms = () => {
     };
 
     const handleDelete = () => {
+        selectedRows.map((id) => DELETE_fetchRequest(id, 'rooms'))
+
         const updatedData = data.filter((row) => !selectedRows.includes(row.id));
         setData(updatedData);
 
@@ -65,7 +67,12 @@ const Rooms = () => {
     };
 
     const handleSaveStudent = (student) => {
-        let data = POST_fetchRequest(student, 'rooms')
+        let data
+
+        student.id ?
+            data = PUT_fetchRequest(student, 'rooms')
+            :
+            data = POST_fetchRequest(student, 'rooms')
 
         if (data) {
             if (student.id) {

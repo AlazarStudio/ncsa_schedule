@@ -17,7 +17,30 @@ export const POST_fetchRequest = async (addInfo, name) => {
         );
         return response.data;
     } catch (err) {
-        setError(err.message); // Обработать ошибку
+        console.log(err.message); // Обработать ошибку
+    }
+};
+
+export const PUT_fetchRequest = async (addInfo, name) => {
+    try {
+        const response = await axios.put(
+            `http://localhost:5000/api/${name}/${addInfo.id}`,
+            addInfo,
+        );
+        return response.data;
+    } catch (err) {
+        console.log(err.message); // Обработать ошибку
+    }
+};
+
+export const DELETE_fetchRequest = async (id, name) => {
+    try {
+        const response = await axios.delete(
+            `http://localhost:5000/api/${name}/${id}`
+        );
+        return response.data;
+    } catch (err) {
+        console.log(err.message); // Обработать ошибку
     }
 };
 
