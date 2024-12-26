@@ -18,6 +18,7 @@ import Subjects from "./Components/Pages/Subjects";
 
 function App() {
     const [groupSchedules, setGroupSchedules] = useState();
+    // console.log(groupSchedules)
     return (
         <Routes>
             <Route path="/" element={<Layout />}>

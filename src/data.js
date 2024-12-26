@@ -33,6 +33,20 @@ export const PUT_fetchRequest = async (addInfo, name) => {
     }
 };
 
+export const PUT_fetchRequest_Schedule = async (addInfo, name) => {
+    console.log(`http://localhost:5000/api/${name}`)
+    console.log(addInfo)
+    try {
+        const response = await axios.put(
+            `http://localhost:5000/api/${name}`,
+            addInfo,
+        );
+        return response.data;
+    } catch (err) {
+        console.log(err.message); // Обработать ошибку
+    }
+};
+
 export const DELETE_fetchRequest = async (id, name) => {
     try {
         const response = await axios.delete(

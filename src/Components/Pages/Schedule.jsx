@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Tabs, Tab, Select, MenuItem, Typography, Grid, Button, Autocomplete, TextField } from "@mui/material";
 import DaySchedule from "./DaySchedule";
-import { rooms, teachers, groups, subjects } from "../../data";
+import { GET_fetchRequest, PUT_fetchRequest, PUT_fetchRequest_Schedule } from "../../data";
 import ViewDaySchedule from "./ViewDaySchedule";
 
 const initialSchedule = {
@@ -334,6 +334,18 @@ const today = new Date();
 const dayOfWeek = today.toLocaleDateString('en-US', { weekday: 'long' }).toLowerCase();
 
 function Schedule({ groupSchedules, setGroupSchedules }) {
+    const [subjects, setSubjects] = useState([]);
+    const [groups, setGroups] = useState([]);
+    const [teachers, setTeachers] = useState([]);
+    const [rooms, setRooms] = useState([]);
+
+    useEffect(() => {
+        GET_fetchRequest('subjects', setSubjects);
+        GET_fetchRequest('groups', setGroups);
+        GET_fetchRequest('teachers', setTeachers);
+        GET_fetchRequest('rooms', setRooms);
+    }, []);
+
     const [activeDay, setActiveDay] = useState(dayOfWeek);
     const [selectedGroup, setSelectedGroup] = useState("");
     const [schedule, setSchedule] = useState(initialSchedule);
@@ -345,14 +357,6 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
     const changeEditGroup = () => {
         setIsEditGroup(!isEditGroup)
     }
-
-    // useEffect(() => {
-    //     const lastGroup = localStorage.getItem("lastSelectedGroup");
-    //     if (lastGroup) {
-    //         setSelectedGroup(lastGroup);
-    //         setSchedule(groupSchedules ? groupSchedules[lastGroup] : '' || initialSchedule);
-    //     }
-    // }, [groupSchedules]);
 
     // Добавление новой пары
     const addLesson = (day) => {
@@ -416,15 +420,28 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
 
     // Сохранение расписания для текущей группы
     const saveSchedule = () => {
-        if (!selectedGroup) {
-            alert("Выберите группу перед сохранением расписания.");
-            return;
+        let data = {
+            group: selectedGroup,
+            monday: schedule.monday,
+            tuesday: schedule.tuesday,
+            wednesday: schedule.wednesday,
+            thursday: schedule.thursday,
+            friday: schedule.friday,
+            saturday: schedule.saturday,
+            sunday: schedule.sunday,
         }
-        setGroupSchedules((prev) => ({
-            ...prev,
-            [selectedGroup]: schedule
-        }));
-        alert("Расписание сохранено!");
+
+        PUT_fetchRequest_Schedule(data, 'group-schedules',)
+
+        // if (!selectedGroup) {
+        //     alert("Выберите группу перед сохранением расписания.");
+        //     return;
+        // }
+        // setGroupSchedules((prev) => ({
+        //     ...prev,
+        //     [selectedGroup]: schedule
+        // }));
+        // alert("Расписание сохранено!");
     };
 
     // Загрузка расписания при выборе группы
