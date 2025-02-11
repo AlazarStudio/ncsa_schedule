@@ -165,6 +165,7 @@ const Students = () => {
         },
         {
             sortable: true, width: '10%', key: "subgroup", label: "Подгруппа", type: "select", options: [
+                { value: "нет подгруппы", label: "нет подгруппы" },
                 { value: "1 подгруппа", label: "1 подгруппа" },
                 { value: "2 подгруппа", label: "2 подгруппа" },
             ]

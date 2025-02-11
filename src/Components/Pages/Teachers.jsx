@@ -37,6 +37,7 @@ const Teachers = () => {
         );
     };
 
+
     const handleDelete = () => {
         selectedRows.map((id) => DELETE_fetchRequest(id, 'teachers'))
         const updatedData = data.filter((row) => !selectedRows.includes(row.id));
@@ -146,7 +147,11 @@ const Teachers = () => {
         { key: "fullName", label: "ФИО", sortable: true, width: '55%' },
         {
             width: '15%', key: "position", label: "Должность", type: "select", options: [
-                { value: "Преподаватель", label: "Преподаватель" },
+                { value: "Штатный сотрудник", label: "Штатный сотрудник" },
+                { value: "Инженер-программист", label: "Инженер-программист" },
+                { value: "Внешний совместитель", label: "Внешний совместитель" },
+                { value: "Внутренний совместитель", label: "Внутренний совместитель" },
+                { value: "ГПХ", label: "ГПХ" },
             ]
         },
         { key: "login", label: "Логин", sortable: true, width: '15%' },
