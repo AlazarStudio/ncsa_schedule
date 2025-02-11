@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Tabs, Tab, Select, MenuItem, Typography, Grid, Button, Autocomplete, TextField } from "@mui/material";
 import DaySchedule from "./DaySchedule";
-import { GET_fetchRequest, PUT_fetchRequest, PUT_fetchRequest_Schedule } from "../../data";
+import { GET_fetchRequest, POST_fetchRequest_Schedule, PUT_fetchRequest, PUT_fetchRequest_Schedule } from "../../data";
 import ViewDaySchedule from "./ViewDaySchedule";
 
 const initialSchedule = {
@@ -418,9 +418,11 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
         }
     }, [schedule, activeDay, activePairIndex, isEditGroup]);
 
+
     // Сохранение расписания для текущей группы
     const saveSchedule = () => {
         let data = {
+            id: schedule.id,
             group: selectedGroup,
             monday: schedule.monday,
             tuesday: schedule.tuesday,
@@ -431,17 +433,23 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
             sunday: schedule.sunday,
         }
 
-        PUT_fetchRequest_Schedule(data, 'group-schedules',)
+        let isExist = groupSchedules[selectedGroup]?.id ? true : false;
 
-        // if (!selectedGroup) {
-        //     alert("Выберите группу перед сохранением расписания.");
-        //     return;
-        // }
+        if (isExist) {
+            PUT_fetchRequest_Schedule(data, 'group-schedules',)
+        } else {
+            POST_fetchRequest_Schedule(data, 'group-schedules',)
+        }
+
+        if (!selectedGroup) {
+            alert("Выберите группу перед сохранением расписания.");
+            return;
+        }
         // setGroupSchedules((prev) => ({
         //     ...prev,
         //     [selectedGroup]: schedule
         // }));
-        // alert("Расписание сохранено!");
+        alert("Расписание сохранено!");
     };
 
     // Загрузка расписания при выборе группы
@@ -480,7 +488,7 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
                             onClick={changeEditGroup}
                             sx={{ whiteSpace: "nowrap" }}
                         >
-                            {!isEditGroup ? 'Редактировать' : 'Посмотреть'}
+                            {!isEditGroup ? 'Редактировать' : 'Вернуться к расписанию'}
                         </Button>
                     </Box>
                 </Typography>
@@ -609,14 +617,16 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
 
                     </Box>
 
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={saveSchedule}
-                        sx={{ marginTop: 6 }}
-                    >
-                        Сохранить
-                    </Button>
+                    {selectedGroup && schedule[activeDay] && schedule[activeDay].length > 0 &&
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={saveSchedule}
+                            sx={{ marginTop: 6 }}
+                        >
+                            Сохранить
+                        </Button>
+                    }
                 </Box>
             )}
         </Box>

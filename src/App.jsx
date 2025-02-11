@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import Layout from "./Components/Standart/Layout/Layout";
@@ -14,11 +14,34 @@ import Rooms from "./Components/Pages/Rooms";
 import Conflicts from "./Components/Pages/Conflicts";
 
 import Subjects from "./Components/Pages/Subjects";
+import { GET_fetchRequest } from "./data";
 
 
 function App() {
-    const [groupSchedules, setGroupSchedules] = useState();
-    // console.log(groupSchedules)
+    const [groupSchedulesFetch, setGroupSchedulesFetch] = useState(null);
+    const [groupSchedules, setGroupSchedules] = useState(null);
+
+    useEffect(() => {
+        GET_fetchRequest('group-schedules', setGroupSchedulesFetch);
+    }, []);
+    
+    const transformScheduleData = (data) => {
+        if (!Array.isArray(data)) return {};
+    
+        return data.reduce((acc, entry) => {
+            const { group, ...schedule } = entry;
+            acc[group] = schedule; 
+            return acc;
+        }, {});
+    };
+    
+    useEffect(() => {
+        if (groupSchedulesFetch) { // Проверяем, что данные загружены
+            const formattedData = transformScheduleData(groupSchedulesFetch);
+            setGroupSchedules(formattedData)
+        }
+    }, [groupSchedulesFetch]);
+    
     return (
         <Routes>
             <Route path="/" element={<Layout />}>

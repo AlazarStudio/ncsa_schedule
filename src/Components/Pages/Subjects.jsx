@@ -5,7 +5,7 @@ import DataTable from "../Blocks/DataTable";
 import ActionPanel from "../Blocks/ActionPanel";
 import StudentModal from "../Blocks/StudentModal";
 import DeleteConfirmationDialog from "../Blocks/DeleteConfirmationDialog";
-import { DELETE_fetchRequest, GET_fetchRequest, POST_fetchRequest, PUT_fetchRequest, subjects } from "../../data";
+import { DELETE_fetchRequest, GET_fetchRequest, POST_fetchRequest, PUT_fetchRequest } from "../../data";
 
 const Subjects = () => {
     const [subjects, setSubjects] = useState([]);
