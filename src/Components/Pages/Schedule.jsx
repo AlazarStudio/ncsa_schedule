@@ -507,7 +507,7 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
                             const filtered = options.filter((option) =>
                                 option.toLowerCase().includes(inputValue.toLowerCase())
                             );
-                            return filtered.slice(0, 5); // Ограничиваем 5 элементами
+                            return filtered; // Ограничиваем 5 элементами
                         }}
                         isOptionEqualToValue={(option, value) => option === value}
                     />
