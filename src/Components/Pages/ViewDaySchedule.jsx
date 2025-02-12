@@ -54,9 +54,9 @@ const ViewDaySchedule = ({ lessons }) => {
                                 </div>
                                 {fields.main_subject &&
                                     <div style={{ display: 'flex', gap: '20px' }}>
-                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.main_teacher)}</div>
-                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.main_room || "Занятия нет"}</div>
-                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.main_type || "Занятия нет"}</div>
+                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.main_teacher) || "-"}</div>
+                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.main_room || "-"}</div>
+                                        <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.main_type || "-"}</div>
                                     </div>
                                 }
                             </div>
@@ -87,9 +87,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                     {fields.subgroup1_subject &&
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_teacher) || "Занятия нет"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_room || "Занятия нет"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_type || "Занятия нет"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_teacher) || "-"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_room || "-"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_type || "-"}</div>
                                         </div>
                                     }
                                 </div>
@@ -99,9 +99,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                     {fields.subgroup2_subject &&
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_teacher) || "Занятия нет"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_room || "Занятия нет"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_type || "Занятия нет"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_teacher) || "-"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_room || "-"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_type || "-"}</div>
                                         </div>
                                     }
                                 </div>
@@ -133,9 +133,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                     {fields.numerator_subject &&
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.numerator_teacher) || "Занятия нет"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.numerator_room || "Занятия нет"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.numerator_type || "Занятия нет"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.numerator_teacher) || "-"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.numerator_room || "-"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.numerator_type || "-"}</div>
                                         </div>
                                     }
                                 </div>
@@ -145,9 +145,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                     {fields.denominator_subject &&
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.denominator_teacher) || "Занятия нет"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.denominator_room || "Занятия нет"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.denominator_type || "Занятия нет"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.denominator_teacher) || "-"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.denominator_room || "-"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.denominator_type || "-"}</div>
                                         </div>
                                     }
                                 </div>
@@ -180,9 +180,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                         {fields.subgroup1_numerator_subject &&
                                             <div style={{ display: 'flex', gap: '20px' }}>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_numerator_teacher) || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_room || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_type || "Занятия нет"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_numerator_teacher) || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_room || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_type || "-"}</div>
                                             </div>
                                         }
                                     </div>
@@ -192,9 +192,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                         {fields.subgroup2_denominator_subject &&
                                             <div style={{ display: 'flex', gap: '20px' }}>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_denominator_teacher) || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_room || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_type || "Занятия нет"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_denominator_teacher) || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_room || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_type || "-"}</div>
                                             </div>
                                         }
                                     </div>
@@ -205,9 +205,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                     {fields.subgroup2_subject &&
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_teacher) || "Занятия нет"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_room || "Занятия нет"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_type || "Занятия нет"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_teacher) || "-"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_room || "-"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_type || "-"}</div>
                                         </div>
                                     }
                                 </div>
@@ -239,9 +239,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                     {fields.subgroup1_subject &&
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_teacher) || "Занятия нет"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_room || "Занятия нет"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_type || "Занятия нет"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_teacher) || "-"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_room || "-"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_type || "-"}</div>
                                         </div>
                                     }
                                 </div>
@@ -253,9 +253,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                         {fields.subgroup1_numerator_subject &&
                                             <div style={{ display: 'flex', gap: '20px' }}>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_numerator_teacher) || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_room || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_type || "Занятия нет"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_numerator_teacher) || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_room || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_type || "-"}</div>
                                             </div>
                                         }
                                     </div>
@@ -265,9 +265,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                         {fields.subgroup2_denominator_subject &&
                                             <div style={{ display: 'flex', gap: '20px' }}>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_denominator_teacher) || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_room || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_type || "Занятия нет"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_denominator_teacher) || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_room || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_type || "-"}</div>
                                             </div>
                                         }
                                     </div>
@@ -301,9 +301,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                         {fields.subgroup1_numerator_subject &&
                                             <div style={{ display: 'flex', gap: '20px' }}>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_numerator_teacher) || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_room || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_type || "Занятия нет"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_numerator_teacher) || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_room || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_type || "-"}</div>
                                             </div>
                                         }
                                     </div>
@@ -313,9 +313,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                         {fields.subgroup2_numerator_subject &&
                                             <div style={{ display: 'flex', gap: '20px' }}>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_numerator_teacher) || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_numerator_room || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_numerator_type || "Занятия нет"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_numerator_teacher) || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_numerator_room || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_numerator_type || "-"}</div>
                                             </div>
                                         }
                                     </div>
@@ -326,9 +326,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                     {fields.denominator_subject &&
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.denominator_teacher) || "Занятия нет"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.denominator_room || "Занятия нет"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.denominator_type || "Занятия нет"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.denominator_teacher) || "-"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.denominator_room || "-"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.denominator_type || "-"}</div>
                                         </div>
                                     }
                                 </div>
@@ -360,9 +360,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                     {fields.numerator_subject &&
                                         <div style={{ display: 'flex', gap: '20px' }}>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.numerator_teacher) || "Занятия нет"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.numerator_room || "Занятия нет"}</div>
-                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.numerator_type || "Занятия нет"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.numerator_teacher) || "-"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.numerator_room || "-"}</div>
+                                            <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.numerator_type || "-"}</div>
                                         </div>
                                     }
                                 </div>
@@ -373,9 +373,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                         {fields.subgroup1_denominator_subject &&
                                             <div style={{ display: 'flex', gap: '20px' }}>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_denominator_teacher) || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_denominator_room || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_denominator_type || "Занятия нет"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_denominator_teacher) || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_denominator_room || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_denominator_type || "-"}</div>
                                             </div>
                                         }
                                     </div>
@@ -385,9 +385,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                         {fields.subgroup2_denominator_subject &&
                                             <div style={{ display: 'flex', gap: '20px' }}>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_denominator_teacher) || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_room || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_type || "Занятия нет"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_denominator_teacher) || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_room || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_type || "-"}</div>
                                             </div>
                                         }
                                     </div>
@@ -421,9 +421,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                         {fields.subgroup1_numerator_subject &&
                                             <div style={{ display: 'flex', gap: '20px' }}>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_numerator_teacher) || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_room || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_type || "Занятия нет"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_numerator_teacher) || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_room || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_numerator_type || "-"}</div>
                                             </div>
                                         }
                                     </div>
@@ -433,9 +433,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                         {fields.subgroup2_numerator_subject &&
                                             <div style={{ display: 'flex', gap: '20px' }}>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_numerator_teacher) || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_numerator_room || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_numerator_type || "Занятия нет"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_numerator_teacher) || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_numerator_room || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_numerator_type || "-"}</div>
                                             </div>
                                         }
                                     </div>
@@ -447,9 +447,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                         {fields.subgroup1_denominator_subject &&
                                             <div style={{ display: 'flex', gap: '20px' }}>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_denominator_teacher) || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_denominator_room || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_denominator_type || "Занятия нет"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup1_denominator_teacher) || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_denominator_room || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup1_denominator_type || "-"}</div>
                                             </div>
                                         }
                                     </div>
@@ -459,9 +459,9 @@ const ViewDaySchedule = ({ lessons }) => {
 
                                         {fields.subgroup2_denominator_subject &&
                                             <div style={{ display: 'flex', gap: '20px' }}>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_denominator_teacher) || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_room || "Занятия нет"}</div>
-                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_type || "Занятия нет"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{getName(fields.subgroup2_denominator_teacher) || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_room || "-"}</div>
+                                                <div style={{ borderRadius: "12px", backgroundColor: 'rgba(129, 33, 45, 0.8)', color: '#fff', padding: '10px 15px' }}>{fields.subgroup2_denominator_type || "-"}</div>
                                             </div>
                                         }
                                     </div>
