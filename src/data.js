@@ -1,8 +1,10 @@
 import axios from "axios";
 
+let adress = 'http://192.168.31.174:5000'
+
 export const GET_fetchRequest = async (name, setRequest) => {
     try {
-        const response = await axios.get(`http://localhost:5000/api/${name}`);
+        const response = await axios.get(`${adress}/api/${name}`);
         setRequest(response.data);
     } catch (err) {
         console.log(err.message);
@@ -12,7 +14,7 @@ export const GET_fetchRequest = async (name, setRequest) => {
 export const POST_fetchRequest = async (addInfo, name) => {
     try {
         const response = await axios.post(
-            `http://localhost:5000/api/${name}`,
+            `${adress}/api/${name}`,
             addInfo,
         );
         return response.data;
@@ -24,7 +26,7 @@ export const POST_fetchRequest = async (addInfo, name) => {
 export const PUT_fetchRequest = async (addInfo, name) => {
     try {
         const response = await axios.put(
-            `http://localhost:5000/api/${name}/${addInfo.id}`,
+            `${adress}/api/${name}/${addInfo.id}`,
             addInfo,
         );
         return response.data;
@@ -36,7 +38,7 @@ export const PUT_fetchRequest = async (addInfo, name) => {
 export const DELETE_fetchRequest = async (id, name) => {
     try {
         const response = await axios.delete(
-            `http://localhost:5000/api/${name}/${id}`
+            `${adress}/api/${name}/${id}`
         );
         return response.data;
     } catch (err) {
@@ -46,12 +48,12 @@ export const DELETE_fetchRequest = async (id, name) => {
 
 
 export const PUT_fetchRequest_Schedule = async (addInfo, name) => {
-    console.log(`http://localhost:5000/api/${name}`)
+    console.log(`${adress}/api/${name}`)
     console.log(addInfo)
     
     try {
         const response = await axios.put(
-            `http://localhost:5000/api/${name}`,
+            `${adress}/api/${name}`,
             addInfo,
         );
         return response.data;
@@ -61,12 +63,12 @@ export const PUT_fetchRequest_Schedule = async (addInfo, name) => {
 };
 
 export const POST_fetchRequest_Schedule = async (addInfo, name) => {
-    console.log(`http://localhost:5000/api/${name}`)
+    console.log(`${adress}/api/${name}`)
     console.log(addInfo)
 
     try {
         const response = await axios.post(
-            `http://localhost:5000/api/${name}`,
+            `${adress}/api/${name}`,
             addInfo,
         );
         return response.data;
