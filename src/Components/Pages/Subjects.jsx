@@ -99,8 +99,7 @@ const Subjects = () => {
             setFilteredData(
                 data.filter(
                     (student) =>
-                        student.fullName.toLowerCase().includes(query.toLowerCase()) ||
-                        student.floor.toLowerCase().includes(query.toLowerCase())
+                        student.fullName.toLowerCase().includes(query.toLowerCase())
                 )
             );
         }
