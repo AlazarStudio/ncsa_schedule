@@ -134,12 +134,15 @@ function Conflicts({ groupSchedules }) {
     useEffect(() => {
         const foundConflicts = [];
         const groups = Object.keys(groupSchedules ?? {});
-
+        
         groups.forEach((group) => {
             const schedule = groupSchedules[group];
-
+            const filteredSchedule = Object.fromEntries(
+                Object.entries(schedule).filter(([key]) => key !== "id")
+            );
+            
             Object.keys(schedule).forEach((day) => {
-                const lessons = schedule[day] || [];
+                const lessons = filteredSchedule[day] || [];
 
                 // Проверка внутри одной группы
                 lessons.forEach((lesson) => {

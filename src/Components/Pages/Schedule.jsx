@@ -347,7 +347,7 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
     }, []);
 
     const [activeDay, setActiveDay] = useState(dayOfWeek);
-    const [selectedGroup, setSelectedGroup] = useState("");
+    const [selectedGroup, setSelectedGroup] = useState(localStorage.getItem("selectedGroup") || "");
     const [schedule, setSchedule] = useState(initialSchedule);
     const [activePairIndex, setActivePairIndex] = useState(null);
 
@@ -454,17 +454,26 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
 
     // Загрузка расписания при выборе группы
     const handleGroupChange = (group) => {
-        // Проверка на undefined
-        if (!groupSchedules || !groupSchedules[group]) {
-            setSchedule(initialSchedule);
-        } else {
+        setSelectedGroup(group);
+        localStorage.setItem("selectedGroup", group);
+
+        if (groupSchedules[group]) {
             setSchedule(groupSchedules[group]);
+        } else {
+            setSchedule(initialSchedule);
         }
 
-        setSelectedGroup(group);
         setActivePairIndex(null);
     };
 
+    useEffect(() => {
+        if (selectedGroup && groupSchedules && groupSchedules[selectedGroup]) {
+            setSchedule(groupSchedules[selectedGroup]);
+        } else {
+            setSchedule(initialSchedule);
+        }
+    }, [selectedGroup, groupSchedules]); // Следим за группой и обновлением списка расписаний
+    
 
     function getWeekNumber(date = new Date()) {
         const startOfYear = new Date(date.getFullYear(), 0, 1);
