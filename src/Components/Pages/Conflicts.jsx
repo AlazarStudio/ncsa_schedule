@@ -134,13 +134,13 @@ function Conflicts({ groupSchedules }) {
     useEffect(() => {
         const foundConflicts = [];
         const groups = Object.keys(groupSchedules ?? {});
-        
+
         groups.forEach((group) => {
             const schedule = groupSchedules[group];
             const filteredSchedule = Object.fromEntries(
                 Object.entries(schedule).filter(([key]) => key !== "id")
             );
-            
+
             Object.keys(schedule).forEach((day) => {
                 const lessons = filteredSchedule[day] || [];
 
@@ -178,10 +178,17 @@ function Conflicts({ groupSchedules }) {
             for (let j = i + 1; j < groups.length; j++) {
                 const group1 = groups[i];
                 const group2 = groups[j];
-                const schedule1 = groupSchedules[group1];
-                const schedule2 = groupSchedules[group2];
+
+                const schedule1 = Object.fromEntries(
+                    Object.entries(groupSchedules[group1]).filter(([key]) => key !== "id")
+                );
+
+                const schedule2 = Object.fromEntries(
+                    Object.entries(groupSchedules[group2]).filter(([key]) => key !== "id")
+                );
 
                 Object.keys(schedule1).forEach((day) => {
+                    console.log(day)
                     const lessons1 = schedule1[day] || [];
                     const lessons2 = schedule2[day] || [];
 
