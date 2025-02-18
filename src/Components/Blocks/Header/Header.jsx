@@ -20,6 +20,11 @@ const Header = () => {
     // Определяем, является ли кнопка активной
     const isActive = (path) => location.pathname === path;
 
+    const handleExit = () => {
+        localStorage.clear();
+        window.location.reload();
+    }
+
     return (
         <AppBar position="static" style={{ backgroundColor: '#81212D' }}>
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', width: '100%' }}>
@@ -90,6 +95,8 @@ const Header = () => {
                             <Button color="inherit">Cовпадения</Button>
                         )}
                     </StyledLink>
+                    
+                    <Button color="inherit" onClick={handleExit}>Выход</Button>
                 </Box>
             </Toolbar>
         </AppBar>

@@ -51,7 +51,7 @@ export const DELETE_fetchRequest = async (id, name) => {
 export const PUT_fetchRequest_Schedule = async (addInfo, name) => {
     console.log(`${adress}/api/${name}`)
     console.log(addInfo)
-    
+
     try {
         const response = await axios.put(
             `${adress}/api/${name}`,
@@ -77,6 +77,9 @@ export const POST_fetchRequest_Schedule = async (addInfo, name) => {
         console.log(err.message); // Обработать ошибку
     }
 };
+
+export const admin = { login: "admin", password: 'admin' };
+
 
 // export const subjects = [
 //     { id: 1, fullName: "Математика" },
