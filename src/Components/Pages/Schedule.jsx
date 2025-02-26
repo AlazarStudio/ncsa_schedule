@@ -11,7 +11,7 @@ const initialSchedule = {
     thursday: [],
     friday: [],
     saturday: [],
-    sunday: [],
+    // sunday: [],
 };
 
 const pairTypes = [
@@ -479,7 +479,7 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
         const startOfYear = new Date(date.getFullYear(), 0, 1);
         const diffInDays = Math.floor((date - startOfYear) / (1000 * 60 * 60 * 24));
         const weekNumber = Math.ceil((diffInDays + startOfYear.getDay() + 1) / 7);
-        return weekNumber % 2 === 0 ? 'Знаменатель' : 'Числитель';
+        return weekNumber % 2 === 0 ? 'Числитель' : 'Знаменатель';
     }
 
     return (
@@ -540,7 +540,7 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
                             <Tab label="Четверг" value="thursday" />
                             <Tab label="Пятница" value="friday" />
                             <Tab label="Суббота" value="saturday" />
-                            <Tab label="Воскресенье" value="sunday" />
+                            {/* <Tab label="Воскресенье" value="sunday" /> */}
                         </Tabs>
 
                         {/* Кнопка добавить занятие */}
@@ -626,7 +626,7 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
 
                     </Box>
 
-                    {selectedGroup && schedule[activeDay] && schedule[activeDay].length > 0 &&
+                    {/* {selectedGroup && schedule[activeDay] && schedule[activeDay].length > 0 && */}
                         <Button
                             variant="contained"
                             color="primary"
@@ -635,7 +635,7 @@ function Schedule({ groupSchedules, setGroupSchedules }) {
                         >
                             Сохранить
                         </Button>
-                    }
+                    {/* } */}
                 </Box>
             )}
         </Box>
